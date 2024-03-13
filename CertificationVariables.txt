@@ -1,0 +1,2 @@
+'createJob' to 'createRequest'
+	-in 'createRequest' add variables to store the following(format-> varName:varType): employeeName:String, nameOfCert:String, (checkbox variable)rocReq:bool, (checkbox variable)personalDev:bool, reasonForCert:String, estCompletionTime:String*, estCertDate:Date,certExpiry:String, certCost:double*, nameOfPrevCert:String, prevCertDate:Date, empSignDate:Date, leadSignDate:Date, execSignDate:Date
