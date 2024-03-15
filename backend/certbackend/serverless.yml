@@ -1,5 +1,5 @@
-org: dlg94490
-app: testhttp
+org: dlg94490 # chang to your personal app orginazation
+app: testhttp   # chang to your personal app 
 service: certbackend
 frameworkVersion: '3'
 
@@ -31,12 +31,36 @@ provider:
   #   USERS_TABLE: ${self:custom.tableName}
 
 functions:
+  hello:
+    handler: helloWorld.handler
+    events:
+      - httpApi:
+          path: /hello
+          method: get
   createRequest:
     handler: createRequest.createRequest
     events:
       - httpApi:
           path: /request
           method: post
+    environment:
+      REQUEST_TABLE: ${self:custom.requestTableName}
+    role: dynamoRole
+
+  listItems:
+    handler: listItems.listItems
+    events:
+      - httpApi:
+          path: /board/{model}
+          method: get
+    environment:
+      REQUEST_TABLE: ${self:custom.requestTableName}
+  getItem:
+    handler: getItem.getItem
+    events:
+      - httpApi:
+          path: /board/{model}/{id}
+          method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole

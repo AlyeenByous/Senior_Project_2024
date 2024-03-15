@@ -1,16 +1,109 @@
 'createJob' to 'createRequest'
 	-in 'createRequest' add variables to store the following(format-> varName:varType): 
-		employeeName:String, 
-		nameOfCert:String, 
-		(checkbox variable)rocReq:bool, 
-		(checkbox variable)personalDev:bool, 
-		reasonForCert:String, 
-		estCompletionTime:String*, 
-		estCertDate:Date, 
-		certExpiry:String, 
-		certCost:double*, 
-		nameOfPrevCert:String, 
-		prevCertDate:Date, 
-		empSignDate:Date, 
-		leadSignDate:Date, 
-		execSignDate:Date
+	employeeName:String, 
+	nameOfCert:String, 
+	(radiobutton variable)rocReq:bool, 
+	(radiobutton variable)personalDev:bool, 
+	reasonForCert:String, 
+	estCompletionTime:String*, 
+	estCertDate:Date,
+	certExpiry:String, 
+	certCost:double*, 
+	nameOfPrevCert:String, 
+	prevCertDate:Date, 
+	empSignDate:Date, 
+	leadSignDate:Date, 
+	execSignDate:Date
+
+
+
+
+
+# functions:
+#   hello:
+#     handler: helloWorld.handler
+#     events:
+#       - httpApi:
+#           path: /hello
+#           method: get
+#   listItems:
+#     handler: listItems.listItems
+#     events:
+#       - httpApi:
+#           path: /board/{model}
+#           method: get
+#     environment:
+#       CERT_TABLE: ${self:custom.certTableName}
+
+#   getItem:
+#     handler: getItem.getItem
+#     events:
+#       - httpApi:
+#           path: /board/{model}/{id}
+#           method: get
+#     environment:
+#       CERT_TABLE: ${self:custom.certTableName}
+#     role: dynamoRole
+
+#   createRequest:
+#     handler: createRequest.createRequest
+#     events:
+#       - httpApi:
+#           path: /requests
+#           method: post
+#     environment:
+#       CERT_TABLE: ${self:custom.certTableName}
+#     role: dynamoRole
+# resources:
+#   Resources:
+#     dynamoRole:
+#       Type: AWS::IAM::Role
+#       Properties:
+#         RoleName: DynamoRole
+#         AssumeRolePolicyDocument:
+#           Version: '2012-10-17'
+#           Statement:
+#             - Effect: Allow
+#               Principal:
+#                 Service:
+#                   - lambda.amazonaws.com
+#               Action: sts:AssumeRole
+#         Policies:
+#           - PolicyName: dynamoPolicy
+#             PolicyDocument:
+#               Version: '2012-10-17'
+#               Statement:
+#                 - Effect: Allow # note that these rights are given in the default policy and are required if you want logs out of your lambda(s)
+#                   Action:
+#                     - logs:CreateLogGroup
+#                     - logs:CreateLogStream
+#                     - logs:PutLogEvents
+#                   Resource:
+#                     - 'Fn::Join':
+#                         - ':'
+#                         - - 'arn:aws:logs'
+#                           - Ref: 'AWS::Region'
+#                           - Ref: 'AWS::AccountId'
+#                           - 'log-group:/aws/lambda/*:*:*'
+#                 - Effect: Allow
+#                   Action:
+#                     - dynamodb:Query
+#                     - dynamodb:Scan
+#                     - dynamodb:GetItem
+#                     - dynamodb:PutItem
+#                     - dynamodb:UpdateItem
+#                     - dynamodb:DeleteItem
+#                   Resource:
+#                     - Fn::GetAtt: [certTable, Arn]
+#     certTable:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         AttributeDefinitions:
+#           - AttributeName: id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: id
+#             KeyType: HASH
+#         BillingMode: PAY_PER_REQUEST
+#         TableName: $self:custom.cert-table-$
+
