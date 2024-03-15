@@ -1,5 +1,5 @@
-org: dlg94490
-app: testhttp
+org: dlg94490 #change to your org
+app: testhttp #change to your app
 service: certbackend
 frameworkVersion: '3'
 
