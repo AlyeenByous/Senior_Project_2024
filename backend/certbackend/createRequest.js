@@ -33,9 +33,17 @@ exports.createRequest = async (event, context, callback) => {
             createdTimestamp: ts,
             employeeName: data.employeeName,
             nameOfCert: data.nameOfCert,
+            rocReq: data.rocReq, // double check datatype for rocReq
+            personalDev: data.personalDev, // double check datatype for personalDev
             reasonForCert: data.reasonForCert,
             estCompletionTime: data.estCompletionTime,
             certExpiry: data.certExpiry,
+            certCost: data.certCost, 
+            nameOfPrevCert: data.nameOfPrevCert, 
+            prevCertDate: data.prevCertDate, 
+            empSignDate: data.empSignDate, 
+            leadSignDate: data.leadSignDate, 
+            execSignDate: data.execSignDate
 
             
         }
