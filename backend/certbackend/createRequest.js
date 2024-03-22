@@ -2,16 +2,16 @@
 
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const uuid = require('uuid'); //requre all fields***
+//const uuid = require('uuid'); //requre all fields***
 
-exports.createRequest = async (event, context, callback) => {
+module.exports.createRequest = async (event, context, callback) => {
     let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
     };
     let statusCode = 200;
 
-    const data = JSON.parse(event.body);
+    const data = JSON.parse(Buffer.from(event.body, 'base64').toString());
     console.log("EVENT:::", data);
 
     //create new timestamp value
@@ -28,7 +28,7 @@ exports.createRequest = async (event, context, callback) => {
     const params = {
         TableName: process.env.REQUEST_TABLE,
         Item: {
-            id: uuid.v1(),
+            id: data.id,
             createdDate: dt,
             createdTimestamp: ts,
             employeeName: data.employeeName,
@@ -55,7 +55,7 @@ exports.createRequest = async (event, context, callback) => {
         await dynamoDb.put(params).promise()
             .then(res => {
                 callback(null, {
-                    statusCode: 200,
+                    statusCode: 201,
                     headers,
                     body: JSON.stringify({message: 'Created Request Successfully!'})
                 });
@@ -79,3 +79,39 @@ function addZero(i) {
     }
     return i;
 }
+
+
+
+
+
+// code from audrey for testing purposes
+// 'use strict'
+// const AWS = require("aws-sdk")
+
+// module.exports.createRequest = async (event) => {
+//     const body = JSON.parse(Buffer.from(event.body, 'base64').toString())
+//     const dynamodb = new AWS.DynamoDB.DocumentClient()
+//     const putParams = {
+//         TableName: process.env.REQUEST_TABLE,
+//         Item: {
+//             id: body.id,
+//             employeeName: body.employeeName,
+//             nameOfCert: body.nameOfCert,
+//             rocReq: body.rocReq, // double check bodytype for rocReq
+//             personalDev: body.personalDev, // double check bodytype for personalDev
+//             reasonForCert: body.reasonForCert,
+//             estCompletionTime: body.estCompletionTime,
+//             certExpiry: body.certExpiry,
+//             certCost: body.certCost, 
+//             nameOfPrevCert: body.nameOfPrevCert, 
+//             prevCertDate: body.prevCertDate, 
+//             empSignDate: body.empSignDate, 
+//             leadSignDate: body.leadSignDate, 
+//             execSignDate: body.execSignDate
+//          }
+//     }
+//     await dynamodb.put(putParams).promise()
+//     return {
+//       statusCode: 201
+//     };
+//   };
