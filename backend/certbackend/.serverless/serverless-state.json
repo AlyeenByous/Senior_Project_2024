@@ -9,7 +9,7 @@
         "cors": true
       },
       "name": "aws",
-      "runtime": "nodejs18.x",
+      "runtime": "nodejs16.x",
       "stage": "dev",
       "region": "us-east-1",
       "profile": "roc_serverless",
@@ -19,12 +19,7 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:GetItem",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
+                "dynamodb:Scan"
               ],
               "Resource": [
                 {
@@ -288,10 +283,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/certbackend/dev/1710486117443-2024-03-15T07:01:57.443Z/certbackend.zip"
+                "S3Key": "serverless/certbackend/dev/1710979856354-2024-03-21T00:10:56.354Z/certbackend.zip"
               },
               "Handler": "s_hello.handler",
-              "Runtime": "nodejs18.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "certbackend-dev-hello",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -313,10 +308,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/certbackend/dev/1710486117443-2024-03-15T07:01:57.443Z/certbackend.zip"
+                "S3Key": "serverless/certbackend/dev/1710979856354-2024-03-21T00:10:56.354Z/certbackend.zip"
               },
               "Handler": "s_createRequest.handler",
-              "Runtime": "nodejs18.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "certbackend-dev-createRequest",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -344,10 +339,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/certbackend/dev/1710486117443-2024-03-15T07:01:57.443Z/certbackend.zip"
+                "S3Key": "serverless/certbackend/dev/1710979856354-2024-03-21T00:10:56.354Z/certbackend.zip"
               },
-              "Handler": "s_listItems.handler",
-              "Runtime": "nodejs18.x",
+              "Handler": "listItems.listItems",
+              "Runtime": "nodejs16.x",
               "FunctionName": "certbackend-dev-listItems",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -374,10 +369,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/certbackend/dev/1710486117443-2024-03-15T07:01:57.443Z/certbackend.zip"
+                "S3Key": "serverless/certbackend/dev/1710979856354-2024-03-21T00:10:56.354Z/certbackend.zip"
               },
-              "Handler": "s_getItem.handler",
-              "Runtime": "nodejs18.x",
+              "Handler": "getItem.getItem",
+              "Runtime": "nodejs16.x",
               "FunctionName": "certbackend-dev-getItem",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -398,44 +393,44 @@
               "dynamoRole"
             ]
           },
-          "HelloLambdaVersion9ICYoSmW7r8N0pWmfOtmv0JkKonQI4Fw3Jy2n2ClQgA": {
+          "HelloLambdaVersionfjpM2TcWD5922qtipz4hs2jlFwof3Zc4yraoTjodI8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "zfLw/WAQLzNri4T+OVaPSB1WQhBryqro+o25ITIGHtU="
+              "CodeSha256": "d99Clx8eH29vKyqLuD4vjOINEjXjD9umYueiYOnIG1M="
             }
           },
-          "CreateRequestLambdaVersionMqB94WZlhvt29pzCxqpt3l5PRYYjcDvGNfv2uBvMiEk": {
+          "CreateRequestLambdaVersionYzjL0n6VWf4eEmKew6K0AY6RINIVzfLvkrUok1dIfvw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateRequestLambdaFunction"
               },
-              "CodeSha256": "zfLw/WAQLzNri4T+OVaPSB1WQhBryqro+o25ITIGHtU="
+              "CodeSha256": "d99Clx8eH29vKyqLuD4vjOINEjXjD9umYueiYOnIG1M="
             }
           },
-          "ListItemsLambdaVersion96kyNz0B7TUwJwOoUYYipSZ5gCxjbMvvWYG8OsWIlc": {
+          "ListItemsLambdaVersionnU8DuQk42f0EQ0oT5hc9pneyuFwr5S95TjLwCrnoDc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ListItemsLambdaFunction"
               },
-              "CodeSha256": "zfLw/WAQLzNri4T+OVaPSB1WQhBryqro+o25ITIGHtU="
+              "CodeSha256": "d99Clx8eH29vKyqLuD4vjOINEjXjD9umYueiYOnIG1M="
             }
           },
-          "GetItemLambdaVersiona3VuBcGppecUfBy7GrAzkpP0t9vUtVPFt2VsSN6IDVU": {
+          "GetItemLambdaVersionS2puMTy04tG2MLje3SAIU3lPHIKQEQHBhj82EtljEs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetItemLambdaFunction"
               },
-              "CodeSha256": "zfLw/WAQLzNri4T+OVaPSB1WQhBryqro+o25ITIGHtU="
+              "CodeSha256": "d99Clx8eH29vKyqLuD4vjOINEjXjD9umYueiYOnIG1M="
             }
           },
           "HttpApi": {
@@ -898,7 +893,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersion9ICYoSmW7r8N0pWmfOtmv0JkKonQI4Fw3Jy2n2ClQgA"
+              "Ref": "HelloLambdaVersionfjpM2TcWD5922qtipz4hs2jlFwof3Zc4yraoTjodI8"
             },
             "Export": {
               "Name": "sls-certbackend-dev-HelloLambdaFunctionQualifiedArn"
@@ -907,7 +902,7 @@
           "CreateRequestLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateRequestLambdaVersionMqB94WZlhvt29pzCxqpt3l5PRYYjcDvGNfv2uBvMiEk"
+              "Ref": "CreateRequestLambdaVersionYzjL0n6VWf4eEmKew6K0AY6RINIVzfLvkrUok1dIfvw"
             },
             "Export": {
               "Name": "sls-certbackend-dev-CreateRequestLambdaFunctionQualifiedArn"
@@ -916,7 +911,7 @@
           "ListItemsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ListItemsLambdaVersion96kyNz0B7TUwJwOoUYYipSZ5gCxjbMvvWYG8OsWIlc"
+              "Ref": "ListItemsLambdaVersionnU8DuQk42f0EQ0oT5hc9pneyuFwr5S95TjLwCrnoDc"
             },
             "Export": {
               "Name": "sls-certbackend-dev-ListItemsLambdaFunctionQualifiedArn"
@@ -925,7 +920,7 @@
           "GetItemLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetItemLambdaVersiona3VuBcGppecUfBy7GrAzkpP0t9vUtVPFt2VsSN6IDVU"
+              "Ref": "GetItemLambdaVersionS2puMTy04tG2MLje3SAIU3lPHIKQEQHBhj82EtljEs"
             },
             "Export": {
               "Name": "sls-certbackend-dev-GetItemLambdaFunctionQualifiedArn"
@@ -1077,9 +1072,9 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs18.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersion9ICYoSmW7r8N0pWmfOtmv0JkKonQI4Fw3Jy2n2ClQgA"
+        "versionLogicalId": "HelloLambdaVersionfjpM2TcWD5922qtipz4hs2jlFwof3Zc4yraoTjodI8"
       },
       "createRequest": {
         "handler": "s_createRequest.handler",
@@ -1087,7 +1082,7 @@
           {
             "httpApi": {
               "path": "/request",
-              "method": "post"
+              "method": "POST"
             },
             "resolvedMethod": "POST",
             "resolvedPath": "/request"
@@ -1101,12 +1096,12 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs18.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "CreateRequestLambdaVersionMqB94WZlhvt29pzCxqpt3l5PRYYjcDvGNfv2uBvMiEk"
+        "versionLogicalId": "CreateRequestLambdaVersionYzjL0n6VWf4eEmKew6K0AY6RINIVzfLvkrUok1dIfvw"
       },
       "listItems": {
-        "handler": "s_listItems.handler",
+        "handler": "listItems.listItems",
         "events": [
           {
             "httpApi": {
@@ -1124,12 +1119,12 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs18.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "ListItemsLambdaVersion96kyNz0B7TUwJwOoUYYipSZ5gCxjbMvvWYG8OsWIlc"
+        "versionLogicalId": "ListItemsLambdaVersionnU8DuQk42f0EQ0oT5hc9pneyuFwr5S95TjLwCrnoDc"
       },
       "getItem": {
-        "handler": "s_getItem.handler",
+        "handler": "getItem.getItem",
         "events": [
           {
             "httpApi": {
@@ -1148,9 +1143,9 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs18.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "GetItemLambdaVersiona3VuBcGppecUfBy7GrAzkpP0t9vUtVPFt2VsSN6IDVU"
+        "versionLogicalId": "GetItemLambdaVersionS2puMTy04tG2MLje3SAIU3lPHIKQEQHBhj82EtljEs"
       }
     },
     "resources": {
@@ -1278,10 +1273,10 @@
     "isDashboardAppPreconfigured": true,
     "orgUid": "2701d1d4-013f-4ab9-afcd-f1dfbfd31d0e",
     "appUid": "qwVm73N73QcbzXzdPw",
-    "artifact": "C:\\Users\\shedi\\OneDrive\\Documents\\backend\\certbackend\\.serverless\\certbackend.zip"
+    "artifact": "C:\\Users\\shedi\\OneDrive\\Documents\\GitHub\\S24_Risen_One_Team2\\backend\\certbackend\\.serverless\\certbackend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/certbackend/dev/1710486117443-2024-03-15T07:01:57.443Z",
+    "artifactDirectoryName": "serverless/certbackend/dev/1710979856354-2024-03-21T00:10:56.354Z",
     "artifact": "certbackend.zip"
   }
 }

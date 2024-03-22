@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const uuid = require('uuid');
+const uuid = require('uuid'); //requre all fields***
 
 exports.createRequest = async (event, context, callback) => {
     let headers = {
@@ -55,7 +55,7 @@ exports.createRequest = async (event, context, callback) => {
         await dynamoDb.put(params).promise()
             .then(res => {
                 callback(null, {
-                    statusCode,
+                    statusCode: 200,
                     headers,
                     body: JSON.stringify({message: 'Created Request Successfully!'})
                 });

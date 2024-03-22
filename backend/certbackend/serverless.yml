@@ -4,13 +4,13 @@ service: certbackend
 frameworkVersion: '3'
 
 custom:
-  requestTableName: '${self:service}request-table-${sls:stage}'
+  requestTableName: ${self:service}request-table-${sls:stage}
 
 provider:
   httpApi:
     cors: true
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   profile: roc_serverless
@@ -19,12 +19,12 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - dynamodb:Query
+            # - dynamodb:Query
             - dynamodb:Scan
-            - dynamodb:GetItem
-            - dynamodb:PutItem
-            - dynamodb:UpdateItem
-            - dynamodb:DeleteItem
+            # - dynamodb:GetItem
+            # - dynamodb:PutItem
+            # - dynamodb:UpdateItem
+            # - dynamodb:DeleteItem
           Resource:
             - Fn::GetAtt: [ RequestTable, Arn ]
   # environment:
@@ -42,7 +42,7 @@ functions:
     events:
       - httpApi:
           path: /request
-          method: post
+          method: POST
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole
