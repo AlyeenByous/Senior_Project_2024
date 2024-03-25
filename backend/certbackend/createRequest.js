@@ -16,7 +16,7 @@ module.exports.createRequest = async (event, context, callback) => {
 
     //create new timestamp value
     let d = new Date();
-    let h = addZero(d.getHours());
+    let h = addZero(d.getHours()-5);
     let m = addZero(d.getMinutes());
     let ts = h + ':' + m;
     //create new date value
@@ -29,8 +29,8 @@ module.exports.createRequest = async (event, context, callback) => {
         TableName: process.env.REQUEST_TABLE,
         Item: {
             id: data.id,
-            createdDate: dt,
-            createdTimestamp: ts,
+            createdDate: dt,//requires no input from users
+            createdTimestamp: ts, //requires no input from users
             employeeName: data.employeeName,
             nameOfCert: data.nameOfCert,
             rocReq: data.rocReq, // double check datatype for rocReq
