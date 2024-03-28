@@ -55,7 +55,7 @@ functions:
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
-  getItem: #working on this in sprint 3
+  getItem: #working on this in sprint 4
     handler: getItem.getItem
     events:
       - httpApi:
