@@ -51,7 +51,7 @@ functions:
     handler: listItems.listItems
     events:
       - httpApi:
-          path: /board/{model}
+          path: /list      # board/{model}
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
@@ -59,7 +59,7 @@ functions:
     handler: getItem.getItem
     events:
       - httpApi:
-          path: /board/{model}/{id}
+          path: /getItem  # board/{model}/{id}
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}

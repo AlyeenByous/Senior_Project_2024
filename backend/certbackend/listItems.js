@@ -14,14 +14,17 @@ exports.listItems = async (event, context, callback) => {
 
     console.log("EVENT:::", JSON.stringify(event));
 
-    const tableName = event.pathParameters.model
+    const tableName = requestTable  // event.pathParameters.model
+    
     let table;
     switch (tableName) {
-        case "request":
-            table = requestTable;
-            break;
+        case "error":
+           // throw new Error(`Unsupported resource:"`); // "${modelName}"`);
+           break;
         default:
-            throw new Error(`Unsupported resource: "${modelName}"`);
+            table = requestTable;
+            
+            
     }
 
     const params = {
