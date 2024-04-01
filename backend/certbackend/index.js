@@ -10,25 +10,25 @@ const serverless = require("serverless-http");
 
 const app = express();
 
-const USERS_TABLE = process.env.USERS_TABLE;
+const REQUEST_TABLE = process.env.REQUEST_TABLE;
 const client = new DynamoDBClient();
 const dynamoDbClient = DynamoDBDocumentClient.from(client);
 
 app.use(express.json());
 
-app.get("/users/:userId", async function (req, res) {
+app.get("/request/:id", async function (req, res) {
   const params = {
-    TableName: USERS_TABLE,
+    TableName: REQUEST_TABLE,
     Key: {
-      userId: req.params.userId,
+      id: req.params.id,
     },
   };
 
   try {
     const { Item } = await dynamoDbClient.send(new GetCommand(params));
     if (Item) {
-      const { userId, name } = Item;
-      res.json({ userId, name });
+      const { id, name } = Item;
+      res.json({ id, name });
     } else {
       res
         .status(404)
@@ -40,16 +40,16 @@ app.get("/users/:userId", async function (req, res) {
   }
 });
 
-app.post("/users", async function (req, res) {
-  const { userId, name } = req.body;
-  if (typeof userId !== "string") {
-    res.status(400).json({ error: '"userId" must be a string' });
+app.post("/request", async function (req, res) {
+  const { id, name } = req.body;
+  if (typeof id !== "string") {
+    res.status(400).json({ error: '"id" must be a string' });
   } else if (typeof name !== "string") {
     res.status(400).json({ error: '"name" must be a string' });
   }
 
   const params = {
-    TableName: USERS_TABLE,
+    TableName: REQUEST_TABLE,
     Item: {
       userId: userId,
       name: name,
