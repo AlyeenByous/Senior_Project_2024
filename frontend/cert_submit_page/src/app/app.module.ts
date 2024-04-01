@@ -7,7 +7,7 @@ import { BlankPageComponent } from './blank-page/blank-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BlankPageComponent
+    //BlankPageComponent
   ],
   imports: [
     BrowserModule

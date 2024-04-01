@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlankPageComponent } from './blank-page/blank-page.component';
 
 @Component({
   selector: 'app-root',
