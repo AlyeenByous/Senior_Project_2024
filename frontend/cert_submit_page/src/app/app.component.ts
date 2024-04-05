@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 // import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { BlankPageComponent } from './blank-page/blank-page.component';
 import {parse} from 'node-html-parser';
-import { HttpClientModule } from '@angular/common/http';
-
 // (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,16 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 
+
 export class AppComponent {
   title = 'cert_submit_page';
 
-  // generatePDF(){
-  //   let text = (<HTMLInputElement>document.getElementById("employeeName")).value;
-  //   let docDefinition = {
-  //     content:[
-  //       'This does work.'
-  //     ]
-  //   };
-  //   pdfMake.createPdf(docDefinition).open();
-  // }
+ 
+
 }
