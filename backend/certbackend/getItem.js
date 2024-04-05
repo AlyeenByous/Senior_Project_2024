@@ -18,11 +18,11 @@ module.exports.createRequest = async (event, context, callback) => {
     const id = event.pathParameters.id;
     let table;
     switch (tableName) { //If you have other tables you would add them here as other case statements to reference that table.
-        case "requests":
+        case "error":
+            throw new Error(`Unsupported resource: "${modelName}"`);
+        default:           
             table = requestTable;
             break;
-        default:
-            throw new Error(`Unsupported resource: "${modelName}"`);
     }
 
     const params = {
