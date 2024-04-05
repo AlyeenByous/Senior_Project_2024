@@ -14,8 +14,8 @@ module.exports.createRequest = async (event, context, callback) => {
     const data = JSON.parse(Buffer.from(event.body, 'base64').toString());
     console.log("EVENT:::", data);
 
-    const tableName = event.pathParameters.model
-    const id = event.pathParameters.id;
+    const tableName = event.pathParameters.model;
+    const id = "id";
     let table;
     switch (tableName) { //If you have other tables you would add them here as other case statements to reference that table.
         case "error":
@@ -27,10 +27,10 @@ module.exports.createRequest = async (event, context, callback) => {
 
     const params = {
         TableName: table,
-        Key: {
-            'id': id,
-        },
-        // ExpressionAttributeValues: {\":id\":{\"S\":\"id\"}}
+        KeyConditionExpression: "id = id",
+        ExpressionAttributeValues: "{\":id\":{\"S\":\"i839d\"}}"
+        }
+        
     }
 
     console.log("Getting individual Item from table:::", table);
@@ -46,4 +46,3 @@ module.exports.createRequest = async (event, context, callback) => {
         }
         callback(null, response);
     }).promise();
-};
