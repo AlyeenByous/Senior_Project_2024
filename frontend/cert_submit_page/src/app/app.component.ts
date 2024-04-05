@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 // import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { BlankPageComponent } from './blank-page/blank-page.component';
 import {parse} from 'node-html-parser';
+import { HttpClientModule } from '@angular/common/http';
 
 // (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 @Component({
