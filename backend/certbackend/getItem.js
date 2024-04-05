@@ -29,7 +29,21 @@ module.exports.createRequest = async (event, context, callback) => {
         TableName: table,
         Key: {
             'id': id,
-        }
+        },
+        // ExpressionAttributeValues: {\":id\":{\"S\":\"id\"}}
     }
 
-}
+    console.log("Getting individual Item from table:::", table);
+
+    await dynamoDb.query(params, function (err, data) {
+        if (err) {
+          console.log("Error", err);
+        }
+          const response = {
+            statusCode,
+            headers,
+            body: JSON.stringify(data.Items)
+        }
+        callback(null, response);
+    }).promise();
+};
