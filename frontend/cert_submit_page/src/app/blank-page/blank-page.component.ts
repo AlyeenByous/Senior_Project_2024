@@ -19,7 +19,7 @@ export class BlankPageComponent {
  
   //tried two different versions that never worked until I found a different stackechange thread
 
-  
+
   // generatePDF(){
   //   let data = <HTMLElement>document.getElementById("exportform");
   //   html2canvas(data).then[canvas => {
@@ -52,7 +52,7 @@ export class BlankPageComponent {
 
   generatePDF()
   {
-    //https://stackoverflow.com/questions/55019343/how-to-generate-a-pdf-using-angular-7 basically helped me with this.
+    //https://stackoverflow.com/questions/55019343/how-to-generate-a-pdf-using-angular-7 basically helped me with this with few adjustments.
       let data = <HTMLElement>document.getElementById('exportform');  
       html2canvas(data).then(canvas => {
       const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
