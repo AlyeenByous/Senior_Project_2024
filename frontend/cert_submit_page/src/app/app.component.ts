@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { BlankPageComponent } from './blank-page/blank-page.component';
 import {parse} from 'node-html-parser';
 // (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+import { ApiService } from './api.service';
+
 
 
 
@@ -18,6 +20,14 @@ import {parse} from 'node-html-parser';
 export class AppComponent {
   title = 'cert_submit_page';
 
- 
+  posts: any[];
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.getPosts().subscribe((data: any[]) => {
+      this.posts = data;
+    });
+  }
 
 }

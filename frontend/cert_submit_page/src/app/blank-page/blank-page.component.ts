@@ -3,7 +3,8 @@ import * as pdfMake from "pdfmake/build/pdfMake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
-//import { ApiService } from './api.service';
+
+
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
@@ -16,6 +17,8 @@ import { jsPDF } from "jspdf";
 
 
 export class BlankPageComponent {
+
+
  
   
   generatePDF()
