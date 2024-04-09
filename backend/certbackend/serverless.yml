@@ -19,9 +19,9 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            # - dynamodb:Query
+           # - dynamodb:Query
             - dynamodb:Scan
-            # - dynamodb:GetItem
+           # - dynamodb:GetItem
             # - dynamodb:PutItem
             # - dynamodb:UpdateItem
             # - dynamodb:DeleteItem
@@ -47,7 +47,7 @@ functions:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole
 
-  listItems: #wip
+  listItems: 
     handler: listItems.listItems
     events:
       - httpApi:
@@ -59,7 +59,7 @@ functions:
     handler: getItem.getItem
     events:
       - httpApi:
-          path: /getItem  # board/{model}/{id}
+          path:  /getItem #{id}  # board/{model}/{id}
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
