@@ -16,7 +16,7 @@ module.exports.getItem = async (event, context, callback) => {
    // const data = JSON.parse(Buffer.from(event.body, 'base64').toString());
     console.log("EVENT:::", data);
 
-    const tableName =requestTable; // event.pathParameters.model;
+    const tableName =/*requestTable; //*/ event.pathParameters.model;
     const id = "id";
     let table;
     switch (tableName) { //If you have other tables you would add them here as other case statements to reference that table.
