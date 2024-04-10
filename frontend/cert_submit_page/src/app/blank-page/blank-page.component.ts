@@ -9,13 +9,20 @@ import { jsPDF } from "jspdf";
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-blank-page',
   templateUrl: './blank-page.component.html',
   styleUrls: ['./blank-page.component.css'],
   standalone: true,
-  imports: [MatInputModule]
+  imports: [MatInputModule, MatFormFieldModule, FormsModule,
+    MatDatepickerModule, MatNativeDateModule, MatCheckboxModule
+  ]
 })
 
 

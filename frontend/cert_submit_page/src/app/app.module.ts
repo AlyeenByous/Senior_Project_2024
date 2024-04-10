@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,10 +18,11 @@ import { ApiService } from './api.service';
     //BlankPageComponent
   ],
   imports: [
+    BlankPageComponent,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule,
+    HttpClientModule, ,
   ],
   providers: [],
   bootstrap: [AppComponent]
