@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-//const uuid = require('uuid'); //requre all fields***
+//const id = require('uuid'); //require all fields***
 
 module.exports.createRequest = async (event, context, callback) => {
     let headers = {

@@ -1,47 +1,114 @@
 <div class="container">
-    <p><mat-form-field appearance="fill">
-            <mat-label>Enter Name</mat-label>
-            <input matInput placeholder="Employee Name">
-            <mat-hint>Employee Name</mat-hint>
-        </mat-form-field></p>
+    <button (click)='generatePDF()'>Generate PDF</button>
+    <div id="exportform">
+        <button>Add New</button>
 
-    <p>Certification Name</p>
-    <input type="text" id="nameOfCert">
+        <br>
+        <label for="certs">Choose a Certification:</label>
+        <select name="certs" id="certs">
+            <option value="cert1">Cert1</option>
+            <option value="cert2">Cert2</option>
+            <option value="cert3">Cert3</option>
+            <option value="cert4">Cert4</option>
+        </select>
+        <br>
+    </div>
 
-    <p>Requirements</p>
-    <input type="radio" id="rocReq" name="reason">
-    <label for="rocReq">ROC has requested I complete this training</label>
-    <input type="radio" id="personalDev" name="reason">
-    <label for="personalDev">Personal Development</label>
+    <table>
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-label>Employee Name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </td>
 
-    <p>Reason for Certification</p>
-    <input type="text" id="reasonForCert">
+            <td>
+                <mat-form-field>
+                    <mat-label>Certification Name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
 
-    <p>Estimated Completion Time</p>
-    <input type="text" id="estCompletionTime">
+    <table>
+        <tr>
+            <td><mat-checkbox>Required by ROC</mat-checkbox></td>
+        </tr>
+        <tr>
+            <td><mat-checkbox>Personal</mat-checkbox></td>
+        </tr>
+    </table>
 
-    <p>Estimated Certification Date</p>
-    <input type="date" id="estCertDate">
+    <mat-form-field>
+        <mat-label>Reason for Certification</mat-label>
+        <input matInput>
+    </mat-form-field>
 
-    <p>Certification Expiry</p>
-    <input type="text" id="certExpiry">
+    <table>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Estimated Completion Time</mat-label>
+                    <input matInput>
+                </mat-form-field></td>
 
-    <p>Certification Cost</p>
-    <input type="number" id="certCost">
+            <td><mat-form-field>
+                    <mat-label>Estimated Completion Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field></td>
+        </tr>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Certification Expiry</mat-label>
+                    <input matInput>
+                </mat-form-field></td>
 
-    <p>Previous Certification Name</p>
-    <input type="text" id="nameOfPrevCert">
+            <td><mat-form-field>
+                    <mat-label>Certification Cost</mat-label>
+                    <input matInput>
+                </mat-form-field></td>
+        </tr>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Previous Certifivation Cost</mat-label>
+                    <input matInput>
+                </mat-form-field></td>
 
-    <p>Previous Certification Date</p>
-    <input type="date" id="prevCertDate">
+            <td><mat-form-field>
+                    <mat-label>Previous Certification Date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field></td>
+        </tr>
+    </table>
 
-    <p>Employee Signed</p>
-    <input type="date" id="empSignDate">
+    <table>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Employee Signed</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field></td>
 
-    <p>Lead Signed</p>
-    <input type="date" id="leadSignDate">
+            <td><mat-form-field>
+                    <mat-label>Lead Signed</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field></td>
 
-    <p>Executive Signed</p>
-    <input type="date" id="execSignDate">
-
+            <td><mat-form-field>
+                    <mat-label>Executive Signed</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field></td>
+        </tr>
+    </table>
+    <button>Submit</button>
 </div>
