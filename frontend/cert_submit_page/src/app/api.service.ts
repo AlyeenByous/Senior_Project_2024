@@ -7,27 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  apiUrl = 'https://jsonplaceholder.typicode.com';
+  apiUrl = 'https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com';
 
   constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/posts`);
+  getItemById(id:String): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/getItemById/${id}`);
   }
 
-  getPostById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/posts/${id}`);
+  getItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/getItem`);
   }
-
-  addPost(post: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/posts`, post);
-  }
-
-  updatePost(id: number, post: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/posts/${id}`, post);
-  }
-
-  deletePost(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/posts/${id}`);
-  }
+  
 }

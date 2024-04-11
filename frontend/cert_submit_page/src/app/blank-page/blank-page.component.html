@@ -7,11 +7,8 @@
 
         <br>
         <label for="certs">Choose a Certification:</label>
-        <select name="certs" id="certs">
-            <option value="cert1">Cert1</option>
-            <option value="cert2">Cert2</option>
-            <option value="cert3">Cert3</option>
-            <option value="cert4">Cert4</option>
+        <select name="certs" id="certs" >
+            <option *ngFor="let option of dropDownOptions" [value]="option.id">{{option.name}}</option>
         </select>
         <br>
 
