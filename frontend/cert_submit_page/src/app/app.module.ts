@@ -5,10 +5,9 @@ import { AppComponent } from './app.component';
 import { BlankPageComponent } from './blank-page/blank-page.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
-
 
 
 @NgModule({
@@ -16,12 +15,14 @@ import { ApiService } from './api.service';
     AppComponent,
     BlankPageComponent,
     HeaderComponent,
+    //BlankPageComponent
   ],
   imports: [
+    BlankPageComponent,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule,
+    HttpClientModule, ,
   ],
   providers: [],
   bootstrap: [AppComponent]
