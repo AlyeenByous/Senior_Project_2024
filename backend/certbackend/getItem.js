@@ -44,10 +44,7 @@
         },
        ExpressionAttributeValues: {
         ":id": i8d},
-            prevCertDate: data.prevCertDate, 
-            prevCertDate: data.prevCertDate, 
-            prevCertDate: data.prevCertDate, 
-            ProjectionExpression: "id, employeeName, nameOfCert, rocReq, personalDev, reasonForCert, estCompletionTime, certExpiry, certCost, nameOfPrevCert,  prevCertDate, empSignDate, leadSignDate, execSignDate "
+        ProjectionExpression: "id, employeeName, nameOfCert, rocReq, personalDev, reasonForCert, estCompletionTime, certExpiry, certCost, nameOfPrevCert,  prevCertDate, empSignDate, leadSignDate, execSignDate "
              
 
         }
