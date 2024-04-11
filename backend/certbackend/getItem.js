@@ -38,9 +38,20 @@
     // }
     const params = {
         TableName: tableName,
-        FilterExpression: "id = :id",
-        ExpressionAttributeValues: {":id": {"S": i8d}}
-    }
+        FilterExpression: "#id = :id",
+        ExpressionAttributeNames:{
+            "#id": "id"
+        },
+       ExpressionAttributeValues: {
+        ":id": i8d},
+            prevCertDate: data.prevCertDate, 
+            prevCertDate: data.prevCertDate, 
+            prevCertDate: data.prevCertDate, 
+            ProjectionExpression: "id, employeeName, nameOfCert, rocReq, personalDev, reasonForCert, estCompletionTime, certExpiry, certCost, nameOfPrevCert,  prevCertDate, empSignDate, leadSignDate, execSignDate "
+             
+
+        }
+    
         
     
 
