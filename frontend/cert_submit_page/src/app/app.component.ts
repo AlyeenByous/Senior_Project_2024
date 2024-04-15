@@ -24,13 +24,14 @@ import { BlankPageComponent } from './blank-page/blank-page.component';
 export class AppComponent {
   title = 'cert_submit_page';
 
-  posts: any[];
+  data: any;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getPosts().subscribe((data: any[]) => {
-      this.posts = data;
+    this.apiService.getItems().subscribe((response) => {
+      this.data = response;
+      console.log(this.data);
     });
   }
 
