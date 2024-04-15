@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-//const uuid = require('uuid'); //requre all fields***
+//const id = require('uuid'); //require all fields***
 
 module.exports.createRequest = async (event, context, callback) => {
     let headers = {
@@ -43,7 +43,8 @@ module.exports.createRequest = async (event, context, callback) => {
             prevCertDate: data.prevCertDate, 
             empSignDate: data.empSignDate, 
             leadSignDate: data.leadSignDate, 
-            execSignDate: data.execSignDate
+            execSignDate: data.execSignDate,
+            approvalStatus: data.approvalStatus
 
             
         }

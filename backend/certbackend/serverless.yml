@@ -1,11 +1,14 @@
-org: dlg94490 # chang to your personal app orginazation
-app: testhttp   # chang to your personal app 
+org: tempor # chang to your personal app orginazation
+app: tester   # chang to your personal app 
 service: certbackend
 frameworkVersion: '3'
 
 custom:
   requestTableName: ${self:service}request-table-${sls:stage}
-
+# parameters:
+#   InstanceTypeParameter:
+#     Type: String
+#     Default: id
 provider:
   httpApi:
     cors: true
@@ -19,9 +22,9 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            # - dynamodb:Query
+           # - dynamodb:Query
             - dynamodb:Scan
-            # - dynamodb:GetItem
+           # - dynamodb:GetItem
             # - dynamodb:PutItem
             # - dynamodb:UpdateItem
             # - dynamodb:DeleteItem
@@ -47,7 +50,7 @@ functions:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole
 
-  listItems: #wip
+  listItems: 
     handler: listItems.listItems
     events:
       - httpApi:
@@ -55,12 +58,29 @@ functions:
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
+ 
   getItem: #working on this in sprint 4
     handler: getItem.getItem
     events:
       - httpApi:
-          path: /getItem  # board/{model}/{id}
+          path:  /getItem  # board/{model}/{id}
           method: get
+    environment:
+      REQUEST_TABLE: ${self:custom.requestTableName}
+    role: dynamoRole
+  
+  getItemById: #working on this in sprint 4
+    handler: getItemById.getItemById
+    events:
+      - httpApi:
+          path:  /getItemById # board/{model}/{id}
+          # parameters:
+          # - in: query
+          #   name: id
+          #   schema: 
+          #     type: string
+          method: get
+          
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole
