@@ -4,7 +4,9 @@
     const dynamoDb = new AWS.DynamoDB.DocumentClient();
     
     const requestTable = process.env.REQUEST_TABLE;
-
+    //this is where we try to get the urlParameters
+   // const queryString = document.location.search;
+   // const dotColin = new URLSearchParams(window.location.search);
   
     
     exports.getItemById = async (event, context, callback)  => {
@@ -17,8 +19,15 @@
         console.log("EVENT:::", JSON.stringify(event));
     
         const tableName = requestTable;  // event.pathParameters.model
+        
+        //const dotColin = new URLSearchParams(document.location.search);
+       
+        //pur url Paramters into variable
+        //let rId = "i8229d";//dotColin.get('id'); 
+        //const i88d = dotColin.get('id');
 
-    const i8d = "i8299d";//need to figure out how to get url params into here
+        const i8d = "i8d";//"i8299d"; //rId;//need to figure out how to get url params into here
+    //Getting the item defined in const i8d
     const params = {
         TableName: requestTable,
         KeyConditionExpression: "#id = :pkey",
@@ -31,22 +40,6 @@
         ScanIndexForward: true
       };
       
-    //  const result = await dynamoDb.query(params).promise();
-
-
-
-
-//     const params = {
-//         TableName: tableName,
-//         IndexName: "id",
-//         KeyConditionExpression: "#id = :id",
-//         ExpressionAttributeNames:{
-//             "#id": "id"
-//         },
-//        ExpressionAttributeValues: {
-//         ":id":i8d},
-//         //ProjectionExpression: "id, employeeName, nameOfCert, rocReq, personalDev, reasonForCert, estCompletionTime, certExpiry, certCost, nameOfPrevCert, prevCertDate, empSignDate, leadSignDate, execSignDate "
-//         };
    
         
     

@@ -5,7 +5,10 @@ frameworkVersion: '3'
 
 custom:
   requestTableName: ${self:service}request-table-${sls:stage}
-
+# parameters:
+#   InstanceTypeParameter:
+#     Type: String
+#     Default: id
 provider:
   httpApi:
     cors: true
@@ -70,8 +73,14 @@ functions:
     handler: getItemById.getItemById
     events:
       - httpApi:
-          path:  /getItemById  # board/{model}/{id}
+          path:  /getItemById # board/{model}/{id}
+          # parameters:
+          # - in: query
+          #   name: id
+          #   schema: 
+          #     type: string
           method: get
+          
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole

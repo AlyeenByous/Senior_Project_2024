@@ -140,7 +140,12 @@ To learn more about the capabilities of `serverless-offline` and `serverless-dyn
 
 Current Backend URLs:
 
-  GET - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/hello                                                                                                             
-  POST - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/request                                                                                                          
-  GET - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/list                                                                                                              
+  GET - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/hello                                                                  
+                                             
+  POST - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/request                                                           
+
+  GET - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/list
+
   GET - https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/getItem
+
+  GET -https://a94kwl6zm1.execute-api.us-east-1.amazonaws.com/getItemById
