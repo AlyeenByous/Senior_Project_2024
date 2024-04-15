@@ -43,7 +43,8 @@ module.exports.createRequest = async (event, context, callback) => {
             prevCertDate: data.prevCertDate, 
             empSignDate: data.empSignDate, 
             leadSignDate: data.leadSignDate, 
-            execSignDate: data.execSignDate
+            execSignDate: data.execSignDate,
+            approvalStatus: data.approvalStatus
 
             
         }
