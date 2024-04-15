@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 @Component({
   selector: 'app-blank-page',
@@ -21,7 +25,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrls: ['./blank-page.component.css'],
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
-    MatDatepickerModule, MatNativeDateModule, MatCheckboxModule
+    MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
+    MatIconModule, MatButtonModule, MatDividerModule
   ]
 })
 

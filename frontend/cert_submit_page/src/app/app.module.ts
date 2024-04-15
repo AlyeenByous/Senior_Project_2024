@@ -15,14 +15,13 @@ import { ApiService } from './api.service';
     AppComponent,
     //BlankPageComponent,
     HeaderComponent,
-    //BlankPageComponent
   ],
   imports: [
     BlankPageComponent,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule, ,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

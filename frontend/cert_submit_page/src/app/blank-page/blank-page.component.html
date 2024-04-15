@@ -1,7 +1,7 @@
 <div class="container">
-    <button (click)='generatePDF()'>Generate PDF</button>
+    <button mat-raised-button (click)='generatePDF()'>Generate PDF</button>
     <div id="exportform">
-        <button>Add New</button>
+        <button mat-raised-button>Add New</button>
 
         <br>
         <label for="certs">Choose a Certification:</label>
@@ -55,9 +55,9 @@
 
             <td><mat-form-field>
                     <mat-label>Estimated Completion Date</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field></td>
         </tr>
         <tr>
@@ -79,9 +79,9 @@
 
             <td><mat-form-field>
                     <mat-label>Previous Certification Date</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field></td>
         </tr>
     </table>
@@ -90,25 +90,25 @@
         <tr>
             <td><mat-form-field>
                     <mat-label>Employee Signed</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker3">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Lead Signed</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker4">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Executive Signed</mat-label>
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="picker5">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
                 </mat-form-field></td>
         </tr>
     </table>
-    <button>Submit</button>
+    <button mat-raised-button>Submit</button>
 </div>
