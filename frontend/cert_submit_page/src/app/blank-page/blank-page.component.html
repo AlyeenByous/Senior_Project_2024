@@ -4,7 +4,7 @@
         <button mat-raised-button>Add New</button>
 
         <br>
-        <label for="certs">Choose a Certification:</label>
+        <label for="certs">Choose a Certification:</label> <br>
         <select name="certs" id="certs" >
             <option *ngFor="let option of dropDownOptions" [value]="option.id">{{option.name}}</option>
         </select>

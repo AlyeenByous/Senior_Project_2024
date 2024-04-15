@@ -4,6 +4,7 @@ import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import { ApiService } from '../api.service';
+import { NgFor } from '@angular/common';
 
 
 
@@ -27,7 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
     MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatIconModule, MatButtonModule, MatDividerModule
+    MatIconModule, MatButtonModule, MatDividerModule, NgFor,
   ]
 })
 
