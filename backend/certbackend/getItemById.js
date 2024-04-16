@@ -1,13 +1,19 @@
 'use strict';
 
     const AWS = require('aws-sdk');
-    const dynamoDb = new AWS.DynamoDB.DocumentClient();
+    //
     
+    const { DocumentClient } = require('aws-sdk/clients/dynamodb');
+    const dynamoDb = new AWS.DynamoDB.DocumentClient();
     const requestTable = process.env.REQUEST_TABLE;
+
     //this is where we try to get the urlParameters
    // const queryString = document.location.search;
-   // const dotColin = new URLSearchParams(window.location.search);
-  
+    //const dotColin = new URLSearchParams(window.location.search);
+//    const myurl= document.location.pathname;//.pathname.split('/'));
+//    const array = myurl.pathname.split('/');
+//    const ham = array[2];
+
     
     exports.getItemById = async (event, context, callback)  => {
         let headers = {
@@ -15,29 +21,34 @@
             'Access-Control-Allow-Credentials': true
         };
         let statusCode = 200;
-    
-        console.log("EVENT:::", JSON.stringify(event));
-    
-        const tableName = requestTable;  // event.pathParameters.model
         
-        //const dotColin = new URLSearchParams(document.location.search);
+        //let iid =event.pathParameters
+       // let xid = iid.split('/');
+       // let xx = x[2];
+        console.log("EVENT:::", JSON.stringify(event));
+     
+    
+    
+       // event.pathParameters.model
+        // when i type this into a browser console:
+        // (array=window.location.pathname.split('/');
+        // ham=array[2];
+        // console.log(ham);
+        //it retrieves the last part of the url, need clarification how to do it in js
        
-        //pur url Paramters into variable
-        //let rId = "i8229d";//dotColin.get('id'); 
-        //const i88d = dotColin.get('id');
+     //need to figure out how to get url {id} into here
+//let i8d = "i8292d"; // xid[1];//"i8292d";
+         let uuid =event.pathParameters.id;
+         console.log(uuid);
 
-        const i8d = "i8d";//"i8299d"; //rId;//need to figure out how to get url params into here
-    //Getting the item defined in const i8d
+    //Getting the item defined in i8d
     const params = {
         TableName: requestTable,
-        KeyConditionExpression: "#id = :pkey",
-        ExpressionAttributeValues: {
-          ":pkey": i8d
-        },
-        ExpressionAttributeNames: {
-          "#id": "id"
-        },
-        ScanIndexForward: true
+        Key: {
+            id : uuid
+
+        }
+      
       };
       
    
@@ -46,17 +57,18 @@
 
 //     console.log("Getting individual Item from table:::", tableName);
 
-
-    await dynamoDb.query(params, (error, data) => {
+      //await dynamoDb.query(params, (error, data) => {
+    await dynamoDb.get(params, (error, data) => {
         if (error) {
             console.log('Scan failed. Error JSON:', JSON.stringify(error, null, 2));
             callback(error);
             return;
         }
-        const response = {
+           const response = {
+            
             statusCode,
             headers,
-            body: JSON.stringify(data.Items)
+            body: JSON.stringify(data.Item)
         };
         callback(null, response);
     }).promise();

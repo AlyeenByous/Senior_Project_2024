@@ -73,12 +73,13 @@ functions:
     handler: getItemById.getItemById
     events:
       - httpApi:
-          path:  /getItemById # board/{model}/{id}
-          # parameters:
-          # - in: query
-          #   name: id
-          #   schema: 
-          #     type: string
+          path:  /getItemById/{id} # board/{model}/{id}
+          parameters:
+          - name: id
+            in: path
+            required: true
+            schema: { 
+            type: string }
           method: get
           
     environment:
