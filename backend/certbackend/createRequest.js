@@ -16,7 +16,7 @@ module.exports.createRequest = async (event, context, callback) => {
 
     //create new timestamp value
     let d = new Date();
-    let h = addZero(d.getHours()-5);
+    let h = addZero(timeFormat(d.getHours()-5));
     let m = addZero(d.getMinutes());
     let ts = h + ':' + m;
     //create new date value
@@ -37,6 +37,7 @@ module.exports.createRequest = async (event, context, callback) => {
             personalDev: data.personalDev, // double check datatype for corresponding radioButton
             reasonForCert: data.reasonForCert,
             estCompletionTime: data.estCompletionTime,
+            estCompletionDate: data.estCompletionDate,
             certExpiry: data.certExpiry,
             certCost: data.certCost, 
             nameOfPrevCert: data.nameOfPrevCert, 
@@ -73,7 +74,9 @@ module.exports.createRequest = async (event, context, callback) => {
     }
 };
 
-
+function timeFormat(j){
+    return (j%24);
+}
 function addZero(i) {
     if (i<10) {
         i = '0' + i;
