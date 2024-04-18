@@ -54,12 +54,12 @@ functions:
     handler: listItems.listItems
     events:
       - httpApi:
-          path: /list      # board/{model}
+          path: /list      #worked on in sprint 3
           method: get
     environment:
       REQUEST_TABLE: ${self:custom.requestTableName}
  
-  getItem: #working on this in sprint 4
+  getItem: #worked on this in sprint 4
     handler: getItem.getItem
     events:
       - httpApi:
@@ -69,11 +69,11 @@ functions:
       REQUEST_TABLE: ${self:custom.requestTableName}
     role: dynamoRole
   
-  getItemById: #working on this in sprint 4
+  getItemById: #worked on this in sprint 4
     handler: getItemById.getItemById
     events:
       - httpApi:
-          path:  /getItemById/{id} # board/{model}/{id}
+          path:  /getItemById/{id}
           parameters:
           - name: id
             in: path
