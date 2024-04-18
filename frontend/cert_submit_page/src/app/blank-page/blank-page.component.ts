@@ -41,6 +41,7 @@ export class BlankPageComponent {
   selectedItemId: string = '';
   selectedItem: any;
   newCertForm: any;
+  isReadOnly=false;
 
   ngOnInit(): void {
     this.apiService.list().subscribe(items => {
@@ -51,9 +52,11 @@ export class BlankPageComponent {
   addNewCert(){
     this.selectedItemId="";
     this.selectedItem="";
+    this.isReadOnly = false;
   }
 
   onSelectedItemChange(event: any): void {
+    this.isReadOnly = true;
     const selectedValue = event.target.value;
     console.log("onselecteditemchange", selectedValue);
     this.apiService.getItemById(selectedValue).subscribe(item => {
