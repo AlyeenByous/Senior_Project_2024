@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import { ApiService } from '../api.service';
 import { NgFor } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 
 
@@ -20,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
-
 @Component({
   selector: 'app-blank-page',
   templateUrl: './blank-page.component.html',
@@ -28,7 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
     MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatIconModule, MatButtonModule, MatDividerModule, NgFor,
+    MatIconModule, MatButtonModule, MatDividerModule, NgFor, NgIf,
   ]
 })
 
@@ -37,14 +37,31 @@ export class BlankPageComponent {
  
   constructor(private apiService: ApiService) {}
 
-  item: any;
-  itemId: String;
-  dropDownOptions: any[] = [
-    { id: "cert1", name: 'Option 1' },
-    { id: "cert2", name: 'Option 2' },
-    { id: "cert3", name: 'Option 3' }
-  ];
+  items: any[] = [];
+  selectedItemId: string = '';
+  selectedItem: any;
+  newCertForm: any;
 
+  ngOnInit(): void {
+    this.apiService.list().subscribe(items => {
+      this.items = items;
+    });
+  }
+
+  addNewCert(){
+    
+  }
+
+  onSelectedItemChange(event: any): void {
+    const selectedValue = event.target.value;
+    console.log("onselecteditemchange", selectedValue);
+    this.apiService.getItemById(selectedValue).subscribe(item => {
+      this.selectedItem = item;
+      console.log("log item", item);
+    });
+    console.log("after onselecteditemchange", this.selectedItem);
+  }
+  
   
   generatePDF()
   {
@@ -60,14 +77,14 @@ export class BlankPageComponent {
     });
   }
 
-  getItemById() {
-    if(this.itemId){
-      this.apiService.getItems().subscribe((response) => {
-        this.item = response;
-        console.log(this.item);
-      });
-    }
-  }
+  // getItemById() {
+  //   if(this.itemId){
+  //     this.apiService.getItems().subscribe((response) => {
+  //       this.item = response;
+  //       console.log(this.item);
+  //     });
+    // }
+  // }
 
 
 }
