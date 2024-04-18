@@ -1,5 +1,6 @@
 'use strict';
-
+//this (getItem.js) may not be needed, as it was the precursor to (getItemById.js) where this returns an
+//array one one object and (getItemById) returns only the object
     const AWS = require('aws-sdk');
     const dynamoDb = new AWS.DynamoDB.DocumentClient();
     
@@ -31,15 +32,10 @@
         ProjectionExpression: "id, employeeName, nameOfCert, rocReq, personalDev, reasonForCert, estCompletionTime, certExpiry, certCost, nameOfPrevCert, prevCertDate, empSignDate, leadSignDate, execSignDate "
         }
    
-    
-    
-        
-    
-
     console.log("Getting individual Item from table:::", tableName);
 
 
-    
+    //this is where it returns the array of one item, created before we knew it needed to be just the object
      await dynamoDb.scan(params, (error, data) => {
         if (error) {
             console.log('Scan failed. Error JSON:', JSON.stringify(error, null, 2));
@@ -58,18 +54,3 @@
     
    
 };
-
-
-    
-    // await dynamoDb.scan(params, (err, data)=> { 
-    //     if (err) {
-    //       console.log("Error",  JSON.stringify(err, null, 2));
-    //     }else{
-    //       const response = {
-    //         statusCode,
-    //         headers,
-    //         body: JSON.stringify(data.Items)
-    //     }}
-    //     callback(null, response);
-//     // }).promise();
-// }

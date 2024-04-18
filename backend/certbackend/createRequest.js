@@ -33,8 +33,8 @@ module.exports.createRequest = async (event, context, callback) => {
             createdTimestamp: ts, //requires no input from users
             employeeName: data.employeeName,
             nameOfCert: data.nameOfCert,
-            rocReq: data.rocReq, // double check datatype for rocReq
-            personalDev: data.personalDev, // double check datatype for personalDev
+            rocReq: data.rocReq, // double check datatype for rocReq corresponding radioButton
+            personalDev: data.personalDev, // double check datatype for corresponding radioButton
             reasonForCert: data.reasonForCert,
             estCompletionTime: data.estCompletionTime,
             certExpiry: data.certExpiry,
@@ -80,39 +80,3 @@ function addZero(i) {
     }
     return i;
 }
-
-
-
-
-
-// code from audrey for testing purposes
-// 'use strict'
-// const AWS = require("aws-sdk")
-
-// module.exports.createRequest = async (event) => {
-//     const body = JSON.parse(Buffer.from(event.body, 'base64').toString())
-//     const dynamodb = new AWS.DynamoDB.DocumentClient()
-//     const putParams = {
-//         TableName: process.env.REQUEST_TABLE,
-//         Item: {
-//             id: body.id,
-//             employeeName: body.employeeName,
-//             nameOfCert: body.nameOfCert,
-//             rocReq: body.rocReq, // double check bodytype for rocReq
-//             personalDev: body.personalDev, // double check bodytype for personalDev
-//             reasonForCert: body.reasonForCert,
-//             estCompletionTime: body.estCompletionTime,
-//             certExpiry: body.certExpiry,
-//             certCost: body.certCost, 
-//             nameOfPrevCert: body.nameOfPrevCert, 
-//             prevCertDate: body.prevCertDate, 
-//             empSignDate: body.empSignDate, 
-//             leadSignDate: body.leadSignDate, 
-//             execSignDate: body.execSignDate
-//          }
-//     }
-//     await dynamodb.put(putParams).promise()
-//     return {
-//       statusCode: 201
-//     };
-//   };
