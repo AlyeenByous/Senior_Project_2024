@@ -1,16 +1,21 @@
 <div class="container">
     <button mat-raised-button (click)='generatePDF()'>Generate PDF</button>
     <div id="exportform">
-        <button mat-raised-button>Add New</button>
+        <button mat-raised-button (click)='addNewCert()'>Add New</button>
 
         <br>
         <label for="certs">Choose a Certification:</label> <br>
-        <select name="certs" id="certs" >
-            <option *ngFor="let option of dropDownOptions" [value]="option.id">{{option.name}}</option>
+        <select [(ngModel)]="selectedItemId" (change)="onSelectedItemChange($event)">
+            <option *ngFor="let item of items" [value]="item.id">{{ item.nameOfCert }}</option>
         </select>
-        <br>
+        <div *ngIf="selectedItem">
+            <h2>Selected Item Details</h2>
+            <p><strong>Name of Certification:</strong> {{ selectedItem.nameOfCert }}</p>
+            <p><strong>Previous Certification Date:</strong> {{ selectedItem.prevCertDate }}</p>
+        </div>
     </div>
 
+    <div *ngIf="!selectedItem || selectedItem==''" >
     <table>
         <tr>
             <td>
@@ -108,4 +113,5 @@
         </tr>
     </table>
     <button mat-raised-button>Submit</button>
+</div>
 </div>
