@@ -49,7 +49,8 @@ export class BlankPageComponent {
   }
 
   addNewCert(){
-    
+    this.selectedItemId="";
+    this.selectedItem="";
   }
 
   onSelectedItemChange(event: any): void {
