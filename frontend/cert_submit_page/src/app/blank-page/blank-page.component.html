@@ -8,20 +8,24 @@
         <select [(ngModel)]="selectedItemId" (change)="onSelectedItemChange($event)">
             <option *ngFor="let item of items" [value]="item.id">{{ item.nameOfCert }}</option>
         </select>
-        <div *ngIf="selectedItem">
-            <h2>Selected Item Details</h2>
-            <p><strong>Name of Certification:</strong> {{ selectedItem.nameOfCert }}</p>
-            <p><strong>Previous Certification Date:</strong> {{ selectedItem.prevCertDate }}</p>
-        </div>
-    </div>
 
-    <div *ngIf="!selectedItem || selectedItem==''" >
+        
+        <div *ngIf="selectedItem">
+            <br><br>  <h1>{{ selectedItem.nameOfCert }} Details</h1>  <br>
+        <!--<p><strong>Name of Certification:</strong> {{ selectedItem.nameOfCert }}</p>
+            <p><strong>Previous Certification Date:</strong> {{ selectedItem.prevCertDate }}</p>
+        -->
+        </div>
+        
+    </div>
+    <p></p>
+    <div  *ngIf="!selectedItem || selectedItem==''">
     <table>
         <tr>
             <td>
                 <mat-form-field>
                     <mat-label>Employee Name</mat-label>
-                    <input matInput>
+                    <input matInput [readonly]="isReadOnly">
                 </mat-form-field>
             </td>
 
@@ -114,4 +118,118 @@
     </table>
     <button mat-raised-button>Submit</button>
 </div>
+
+<div  *ngIf="selectedItem">
+    <table>
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-label>Employee Name</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.employeeName }}">
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field>
+                    <mat-label>Certification Name</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.nameOfCert }}">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td><mat-checkbox >Required by ROC</mat-checkbox></td>
+        </tr>
+        <tr>
+            <td><mat-checkbox >Personal</mat-checkbox></td>
+        </tr>
+    </table>
+
+    <mat-form-field>
+        <mat-label>Reason for Certification</mat-label>
+        <input matInput [readonly]="isReadOnly" value="{{ selectedItem.reasonForCert }}">
+    </mat-form-field>
+
+    <table>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Estimated Completion Time</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCompletionTime }}">
+                </mat-form-field></td>
+
+            <td><mat-form-field>
+                    <mat-label>Estimated Completion Date</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCertDate }}">
+                    <!--<input matInput [matDatepicker]="picker1" [readonly]="isReadOnly">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    -->
+                </mat-form-field></td>
+        </tr>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Certification Expiry</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.certExpiry }}">
+                </mat-form-field></td>
+
+            <td><mat-form-field>
+                    <mat-label>Certification Cost</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.certCost }}">
+                </mat-form-field></td>
+        </tr>
+        <tr>
+            <td><mat-form-field>
+                <mat-label>Previous Certification Name</mat-label>
+                <input matInput [readonly]="isReadOnly" value="{{ selectedItem.nameOfPrevCert }}">
+            </mat-form-field></td>
+
+            <td><mat-form-field>
+                    <mat-label>Previous Certification Date</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.prevCertDate}}">
+                    <!--
+                    <input matInput [matDatepicker]="picker2" [readonly]="isReadOnly" value="{{ selectedItem.prevCertDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    -->
+                </mat-form-field></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Employee Signed</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.empSignDate }}">
+                    <!--
+                    <input matInput [matDatepicker]="picker3" [readonly]="isReadOnly" value="{{ selectedItem.empSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                    -->
+                </mat-form-field></td>
+
+            <td><mat-form-field>
+                    <mat-label>Lead Signed</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.leadSignDate }}">
+                    <!--
+                    <input matInput [matDatepicker]="picker4" [readonly]="isReadOnly" value="{{ selectedItem.leadSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                    -->
+                </mat-form-field></td>
+
+            <td><mat-form-field>
+                    <mat-label>Executive Signed</mat-label>
+                    <input matInput [readonly]="isReadOnly" value="{{ selectedItem.execSignDate }}">
+                    <!--
+                    <input matInput [matDatepicker]="picker5" [readonly]="isReadOnly" value="{{ selectedItem.execSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
+                    -->
+                </mat-form-field></td>
+        </tr>
+    </table>
+
 </div>
+
