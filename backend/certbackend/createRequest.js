@@ -37,6 +37,7 @@ module.exports.createRequest = async (event, context, callback) => {
             personalDev: data.personalDev, // double check datatype for corresponding radioButton
             reasonForCert: data.reasonForCert,
             estCompletionTime: data.estCompletionTime,
+            estCompletionDate: data.estCompletionDate,
             certExpiry: data.certExpiry,
             certCost: data.certCost, 
             nameOfPrevCert: data.nameOfPrevCert, 
