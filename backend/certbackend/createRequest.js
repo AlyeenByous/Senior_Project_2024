@@ -23,7 +23,7 @@ module.exports.createRequest = async (event, context, callback) => {
     let MM = addZero(d.getMonth()+1);
     let dd = addZero(d.getDate());
     let y = d.getFullYear();
-    let dt = y + '/' + MM + '/' + dd;
+    let dt = dd + '/' + MM + '/' + y;
 
     const params = {
         TableName: process.env.REQUEST_TABLE,
