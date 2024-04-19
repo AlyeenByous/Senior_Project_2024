@@ -16,7 +16,7 @@ import { BlankPageComponent } from './blank-page/blank-page.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
 

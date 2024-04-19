@@ -19,23 +19,24 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
   selector: 'app-blank-page',
   templateUrl: './blank-page.component.html',
-  styleUrls: ['./blank-page.component.css'],
+  styleUrls: ['./blank-page.component.scss'],
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
     MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatIconModule, MatButtonModule, MatDividerModule, NgFor,
+    MatIconModule, MatButtonModule, MatDividerModule, NgFor, MatSelectModule
   ]
 })
 
 
 export class BlankPageComponent {
- 
-  constructor(private apiService: ApiService) {}
+
+  constructor(private apiService: ApiService) { }
 
   item: any;
   itemId: String;
@@ -45,9 +46,8 @@ export class BlankPageComponent {
     { id: "cert3", name: 'Option 3' }
   ];
 
-  
-  generatePDF()
-  {
+
+  generatePDF() {
 
     //https://stackoverflow.com/questions/55019343/how-to-generate-a-pdf-using-angular-7 basically helped me with this with few adjustments.
     let data = <HTMLElement>document.getElementById('exportform');
@@ -61,7 +61,7 @@ export class BlankPageComponent {
   }
 
   getItemById() {
-    if(this.itemId){
+    if (this.itemId) {
       this.apiService.getItems().subscribe((response) => {
         this.item = response;
         console.log(this.item);
