@@ -42,8 +42,11 @@ export class BlankPageComponent {
   selectedItemId: string = '';
   selectedItem: any;
   isReadOnly=false;
+  cx =(Math.random()*10000)+1;
+  x = Math.trunc(this.cx);
   //newCertForm = new FormControl('');
   formData = {
+    id: 'i'+ this.x+'d',
     empName: '',
     certName: '',
     required: false,
