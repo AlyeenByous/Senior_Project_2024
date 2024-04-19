@@ -19,20 +19,25 @@
         
     </div>
     <p></p>
+
+    <!--
+        This code is the form that will show to add a new form!
+    -->
     <div  *ngIf="!selectedItem || selectedItem==''">
+    <form #userlogin = "ngForm" (ngSubmit)="onSubmit()">
     <table>
         <tr>
             <td>
                 <mat-form-field>
                     <mat-label>Employee Name</mat-label>
-                    <input matInput [readonly]="isReadOnly">
+                    <input matInput name="empName"  [(ngModel)]="formData.empName">
                 </mat-form-field>
             </td>
 
             <td>
                 <mat-form-field>
                     <mat-label>Certification Name</mat-label>
-                    <input matInput>
+                    <input matInput name="certName" [(ngModel)]="formData.certName">
                 </mat-form-field>
             </td>
         </tr>
@@ -40,28 +45,28 @@
 
     <table>
         <tr>
-            <td><mat-checkbox>Required by ROC</mat-checkbox></td>
+            <td><mat-checkbox name="required" [(ngModel)]="formData.required">Required by ROC</mat-checkbox></td>
         </tr>
         <tr>
-            <td><mat-checkbox>Personal</mat-checkbox></td>
+            <td><mat-checkbox name="personal" [(ngModel)]="formData.personal">Personal</mat-checkbox></td>
         </tr>
     </table>
 
     <mat-form-field>
         <mat-label>Reason for Certification</mat-label>
-        <input matInput>
+        <input matInput name="reason" [(ngModel)]="formData.reason">
     </mat-form-field>
 
     <table>
         <tr>
             <td><mat-form-field>
                     <mat-label>Estimated Completion Time</mat-label>
-                    <input matInput>
+                    <input matInput name="estTime" [(ngModel)]="formData.estTime">
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Estimated Completion Date</mat-label>
-                    <input matInput [matDatepicker]="picker1">
+                    <input matInput [matDatepicker]="picker1" name="estDate" [(ngModel)]="formData.estDate">
                     <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field></td>
@@ -69,23 +74,23 @@
         <tr>
             <td><mat-form-field>
                     <mat-label>Certification Expiry</mat-label>
-                    <input matInput>
+                    <input matInput name="expiry" [(ngModel)]="formData.expiry">
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Certification Cost</mat-label>
-                    <input matInput>
+                    <input matInput name="costOfCert" [(ngModel)]="formData.costOfCert">
                 </mat-form-field></td>
         </tr>
         <tr>
             <td><mat-form-field>
                     <mat-label>Previous Certifivation Cost</mat-label>
-                    <input matInput>
+                    <input matInput name="prevCertCost" [(ngModel)]="formData.prevCertCost">
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Previous Certification Date</mat-label>
-                    <input matInput [matDatepicker]="picker2">
+                    <input matInput [matDatepicker]="picker2" name="previousCertDate" [(ngModel)]="formData.previousCertDate">
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field></td>
@@ -96,28 +101,33 @@
         <tr>
             <td><mat-form-field>
                     <mat-label>Employee Signed</mat-label>
-                    <input matInput [matDatepicker]="picker3">
+                    <input matInput [matDatepicker]="picker3" name="empSign" [(ngModel)]="formData.empSign">
                     <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Lead Signed</mat-label>
-                    <input matInput [matDatepicker]="picker4">
+                    <input matInput [matDatepicker]="picker4" name="leadSign" [(ngModel)]="formData.leadSign">
                     <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
                     <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field></td>
 
             <td><mat-form-field>
                     <mat-label>Executive Signed</mat-label>
-                    <input matInput [matDatepicker]="picker5">
+                    <input matInput [matDatepicker]="picker5" name="execSign" [(ngModel)]="formData.execSign">
                     <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
                     <mat-datepicker #picker5></mat-datepicker>
                 </mat-form-field></td>
         </tr>
     </table>
-    <button mat-raised-button>Submit</button>
+    <button mat-raised-button type="submit">Submit</button>
+</form>
 </div>
+
+<!--
+    The following code will show the chosen certification from the dropdown.
+-->
 
 <div  *ngIf="selectedItem">
     <table>

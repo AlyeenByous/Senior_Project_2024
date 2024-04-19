@@ -8,7 +8,6 @@ import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 
 
-
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 import { MatInputModule } from '@angular/material/input';
@@ -28,7 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
     MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatIconModule, MatButtonModule, MatDividerModule, NgFor, NgIf,
+    MatIconModule, MatButtonModule, MatDividerModule, NgFor, NgIf, 
   ]
 })
 
@@ -40,13 +39,36 @@ export class BlankPageComponent {
   items: any[] = [];
   selectedItemId: string = '';
   selectedItem: any;
-  newCertForm: any;
   isReadOnly=false;
+  //newCertForm = new FormControl('');
+  formData = {
+    empName: '',
+    certName: '',
+    required: false,
+    personal: false,
+    reason: '',
+    estTime: '',
+    estDate: '',
+    expiry: '',
+    costOfCert: '',
+    prevCertCost: '',
+    previousCertDate: '',
+    empSign: '',
+    leadSign: '',
+    execSign: ''
+  };
+
+  submitted: boolean = false;
 
   ngOnInit(): void {
     this.apiService.list().subscribe(items => {
       this.items = items;
     });
+  }
+
+  onSubmit(){
+    this.submitted = true;
+    console.log("form data", this.formData);
   }
 
   addNewCert(){
