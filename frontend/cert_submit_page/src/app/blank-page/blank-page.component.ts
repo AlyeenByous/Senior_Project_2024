@@ -37,6 +37,7 @@ export class BlankPageComponent {
  
   constructor(private apiService: ApiService) {}
 
+  stringFormData: string = '';
   items: any[] = [];
   selectedItemId: string = '';
   selectedItem: any;
@@ -68,10 +69,13 @@ export class BlankPageComponent {
     });
   }
 
+
+
   onSubmit(){
     this.submitted = true;
-    console.log("form data", this.formData);
-    this.sendDataToBackend(this.formData); //after submit this should send it to backend?
+    console.log("form data", this.formData); //this shows an object 
+    this.stringFormData = JSON.stringify(this.formData)
+    this.sendDataToBackend(this.stringFormData); //after submit this should send it to backend?
 
     //this nonsense clears the form again. probably an easier way?
     /*
