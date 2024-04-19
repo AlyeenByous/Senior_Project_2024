@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   request(requestParams: any) {
-    return this.http.get<any[]>(`${this.apiUrl}/request`, requestParams);
+    return this.http.post<any[]>(`${this.apiUrl}/request`, requestParams);
     //return this.http.post<any>(this.adminJobUrl, requestParams);
   }
   
