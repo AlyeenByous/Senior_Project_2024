@@ -6,6 +6,7 @@ import { jsPDF } from "jspdf";
 import { ApiService } from '../api.service';
 import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -70,6 +71,10 @@ export class BlankPageComponent {
   onSubmit(){
     this.submitted = true;
     console.log("form data", this.formData);
+    this.sendDataToBackend(this.formData); //after submit this should send it to backend?
+
+    //this nonsense clears the form again. probably an easier way?
+    /*
     this.formData.empName = '',
     this.formData.certName= '';
     this.formData.required= false;
@@ -84,6 +89,18 @@ export class BlankPageComponent {
     this.formData.empSign= '';
     this.formData.leadSign= '';
     this.formData.execSign= '';
+    */
+  }
+
+  sendDataToBackend(certificationData: any) {
+    this.apiService.request(certificationData).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: () => {
+        console.log('ERROR');
+      },
+    });
   }
 
   addNewCert(){

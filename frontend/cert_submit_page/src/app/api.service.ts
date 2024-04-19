@@ -22,5 +22,10 @@ export class ApiService {
   list(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/list`);
   }
+
+  request(requestParams: any) {
+    return this.http.get<any[]>(`${this.apiUrl}/request`, requestParams);
+    //return this.http.post<any>(this.adminJobUrl, requestParams);
+  }
   
 }
