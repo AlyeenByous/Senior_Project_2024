@@ -57,6 +57,7 @@ export class BlankPageComponent {
     leadSign: '',
     execSign: ''
   };
+  
 
   submitted: boolean = false;
 
@@ -69,6 +70,20 @@ export class BlankPageComponent {
   onSubmit(){
     this.submitted = true;
     console.log("form data", this.formData);
+    this.formData.empName = '',
+    this.formData.certName= '';
+    this.formData.required= false;
+    this.formData.personal= false;
+    this.formData.reason= '';
+    this.formData.estTime= '';
+    this.formData.estDate= '';
+    this.formData.expiry= '';
+    this.formData.costOfCert= '';
+    this.formData.prevCertCost= '';
+    this.formData.previousCertDate= '';
+    this.formData.empSign= '';
+    this.formData.leadSign= '';
+    this.formData.execSign= '';
   }
 
   addNewCert(){
