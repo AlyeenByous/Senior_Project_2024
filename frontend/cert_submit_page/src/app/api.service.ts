@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type':  'text/plain',
+//     Authorization: 'my-auth-token'
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +30,7 @@ export class ApiService {
   list(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/list`);
   }
+
 
   request(requestParams: any) {
     return this.http.post<any[]>(`${this.apiUrl}/request`, requestParams);

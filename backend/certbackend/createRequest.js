@@ -24,11 +24,13 @@ module.exports.createRequest = async (event, context, callback) => {
     let dd = addZero(d.getDate());
     let y = d.getFullYear();
     let dt = dd + '/' + MM + '/' + y;
-
+    //random id addition
+    let ixxd =Math.random()*1000;
+    let ixd = Math.trunc(ixxd);
     const params = {
         TableName: process.env.REQUEST_TABLE,
         Item: {
-            id: data.id,
+            id: 'i'+ixd+'d',
             createdDate: dt,//requires no input from users
             createdTimestamp: ts, //requires no input from users
             employeeName: data.employeeName,

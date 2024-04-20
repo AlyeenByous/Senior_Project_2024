@@ -42,25 +42,26 @@ export class BlankPageComponent {
   selectedItemId: string = '';
   selectedItem: any;
   isReadOnly=false;
-  cx =(Math.random()*10000)+1;
-  x = Math.trunc(this.cx);
+
+  //cx =(Math.random()*10000)+1;
+  //x = Math.trunc(this.cx);
   //newCertForm = new FormControl('');
   formData = {
-    id: 'i'+ this.x+'d',
-    empName: '',
-    certName: '',
-    required: false,
-    personal: false,
-    reason: '',
-    estTime: '',
-    estDate: '',
-    expiry: '',
-    costOfCert: '',
-    prevCertCost: '',
-    previousCertDate: '',
-    empSign: '',
-    leadSign: '',
-    execSign: ''
+    //id: 'i'+ this.x+'d',
+    employeeName: '',
+    nameOfCert: '',
+    rocReq: false,
+    personalDev: false,
+    reasonForCert: '',
+    estCompletionTime: '',
+    estCompletionDate: '',
+    certExpiry: '',
+    certCost: '',
+    nameOfPrevCert: '',
+    prevCertDate: '',
+    empSignDate: '',
+    leadSignDate: '',
+    execSignDate: ''
   };
   
 
@@ -77,7 +78,9 @@ export class BlankPageComponent {
   onSubmit(){
     this.submitted = true;
     console.log("form data", this.formData); //this shows an object 
-    this.stringFormData = JSON.stringify(this.formData)
+    this.stringFormData = JSON.stringify(this.formData);
+    console.log('/');
+    console.log(this.stringFormData);
     this.sendDataToBackend(this.stringFormData); //after submit this should send it to backend?
 
     //this nonsense clears the form again. probably an easier way?
