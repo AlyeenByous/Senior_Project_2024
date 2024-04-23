@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange } from '@angular/material/select';
 
 
 @Component({
@@ -121,7 +122,7 @@ export class BlankPageComponent {
     this.isReadOnly = false;
   }
 
-  onSelectedItemChange(event: any): void {
+  /*onSelectedItemChange(event: any): void {
     this.isReadOnly = true;
     const selectedValue = event.target.value;
     console.log("onselecteditemchange", selectedValue);
@@ -130,8 +131,14 @@ export class BlankPageComponent {
       console.log("log item", item);
     });
     console.log("after onselecteditemchange", this.selectedItem);
-  }
+  }*/
 
+  onSelectedItemChange(event: MatSelectChange): void {
+    this.selectedItemId = event.value;
+    this.apiService.getItemById(this.selectedItemId).subscribe(item => {
+      this.selectedItem = item;
+    });
+  }
 
   generatePDF() {
 

@@ -10,7 +10,7 @@
                     <td>
                         <mat-form-field>
                             <mat-label for="certs">Choose a Certification:</mat-label>
-                            <mat-select [(ngModel)]="selectedItemId" (change)="onSelectedItemChange($event)">
+                            <mat-select [(ngModel)]="selectedItemId" (selectionChange)="onSelectedItemChange($event)">
                                 <mat-option *ngFor="let item of items" [value]="item.id">{{
                                     item.nameOfCert}}</mat-option>
                             </mat-select>
