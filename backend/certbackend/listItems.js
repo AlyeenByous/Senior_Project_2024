@@ -33,6 +33,7 @@ exports.listItems = async (event, context, callback) => {
 
     console.log("Getting Items from table:::", table);
 
+    //bringing all item in our table into view
     await dynamoDb.scan(params, (error, data) => {
         if (error) {
             console.log('Scan failed. Error JSON:', JSON.stringify(error, null, 2));

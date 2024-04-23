@@ -2,125 +2,256 @@
     <div class="container">
         <table>
             <tr>
-                <td><button mat-raised-button (click)='generatePDF()'>Generate PDF</button></td>
-                <td>
-                    <div id="exportform">
-                        <button mat-raised-button>Add New</button>
-
-                        <br>
+                <div id="exportform">
+                    <td><button mat-raised-button (click)='generatePDF()'>Generate PDF</button></td>
+                    <td>
+                        <button mat-raised-button (click)='addNewCert()'>Add New</button>
+                    </td>
+                    <td>
                         <mat-form-field>
-                            <mat-label>Choose a Certification:</mat-label> <br>
-                            <mat-select name="certs" id="certs">
-                                <mat-option *ngFor="let option of dropDownOptions"
-                                    [value]="option.id">{{option.name}}</mat-option>
+                            <mat-label for="certs">Choose a Certification:</mat-label>
+                            <mat-select [(ngModel)]="selectedItemId" (change)="onSelectedItemChange($event)">
+                                <mat-option *ngFor="let item of items" [value]="item.id">{{
+                                    item.nameOfCert}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <br>
-                    </div>
-                </td>
+                    </td>
+                </div>
+                <p></p>
             </tr>
         </table>
 
-        <table>
-            <tr>
+        <!--
+        This code is the form that will show to add a new form!
+    -->
+        <div *ngIf="!selectedItem || selectedItem==''">
+            <form #certForm="ngForm" (ngSubmit)="onSubmit()">
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field style="width:25vw">
+                                <mat-label>Employee Name</mat-label>
+                                <input matInput name="employeeName" [(ngModel)]="formData.employeeName">
+                            </mat-form-field>
+                        </td>
+
+                        <td>
+                            <mat-form-field style="width:25vw">
+                                <mat-label>Certification Name</mat-label>
+                                <input matInput name="nameOfCert" [(ngModel)]="formData.nameOfCert">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <table>
+                    <td><mat-checkbox name="rocReq" [(ngModel)]="formData.rocReq">Required by
+                            ROC</mat-checkbox></td>
+                    <td><mat-checkbox name="personalDev" [(ngModel)]="formData.personalDev">Personal</mat-checkbox></td>
+                </table>
+
+                <table>
+                    <td>
+                        <mat-form-field style="width:50vw">
+                            <mat-label>Reason for Certification</mat-label>
+                            <input matInput name="reasonForCert" [(ngModel)]="formData.reasonForCert">
+                        </mat-form-field>
+                    </td>
+                </table>
+
+                <table>
+                    <tr>
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Estimated Completion Time</mat-label>
+                                <input matInput name="estCompletionTime" [(ngModel)]="formData.estCompletionTime">
+                            </mat-form-field></td>
+
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Estimated Completion Date</mat-label>
+                                <input matInput [matDatepicker]="picker1" name="estCompletionDate"
+                                    [(ngModel)]="formData.estCompletionDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field></td>
+                    </tr>
+                    <tr>
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Certification Expiry</mat-label>
+                                <input matInput name="certExpiry" [(ngModel)]="formData.certExpiry">
+                            </mat-form-field></td>
+
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Certification Cost</mat-label>
+                                <input matInput name="certCost" [(ngModel)]="formData.certCost">
+                            </mat-form-field></td>
+                    </tr>
+                    <tr>
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Previous Certifivation Cost</mat-label>
+                                <input matInput name="nameOfPrevCert" [(ngModel)]="formData.nameOfPrevCert">
+                            </mat-form-field></td>
+
+                        <td><mat-form-field style="width:25vw">
+                                <mat-label>Previous Certification Date</mat-label>
+                                <input matInput [matDatepicker]="picker2" name="prevCertDate"
+                                    [(ngModel)]="formData.prevCertDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field></td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <td><mat-form-field style="width:16.6vw">
+                                <mat-label>Employee Signed</mat-label>
+                                <input matInput [matDatepicker]="picker3" name="empSignDate"
+                                    [(ngModel)]="formData.empSignDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field></td>
+
+                        <td><mat-form-field style="width:16.6vw">
+                                <mat-label>Lead Signed</mat-label>
+                                <input matInput [matDatepicker]="picker4" name="leadSignDate"
+                                    [(ngModel)]="formData.leadSignDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                                <mat-datepicker #picker4></mat-datepicker>
+                            </mat-form-field></td>
+
+                        <td><mat-form-field style="width:16.6vw">
+                                <mat-label>Executive Signed</mat-label>
+                                <input matInput [matDatepicker]="picker5" name="execSignDate"
+                                    [(ngModel)]="formData.execSignDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+                                <mat-datepicker #picker5></mat-datepicker>
+                            </mat-form-field></td>
+                    </tr>
+                </table>
+                <table>
+                    <td><button mat-raised-button class="submit" type="submit">Submit</button></td>
+                </table>
+            </form>
+        </div>
+
+        <!--
+    The following code will show the chosen certification from the dropdown.
+-->
+
+        <div *ngIf="selectedItem">
+            <!--<h1>{{ selectedItem.nameOfCert }} Details</h1> <br>-->
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field style="width:25vw">
+                            <mat-label>Employee Name</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.employeeName }}">
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field style="width:25vw">
+                            <mat-label>Certification Name</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.nameOfCert }}">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <td><mat-checkbox>Required by ROC</mat-checkbox></td>
+                <td><mat-checkbox>Personal</mat-checkbox></td>
+            </table>
+
+            <table>
                 <td>
-                    <mat-form-field style="width:25vw">
-                        <mat-label>Employee Name</mat-label>
-                        <input matInput>
+                    <mat-form-field style="width:50vw">
+                        <mat-label>Reason for Certification</mat-label>
+                        <input matInput [readonly]="isReadOnly" value="{{ selectedItem.reasonForCert }}">
                     </mat-form-field>
                 </td>
+            </table>
 
-                <td>
-                    <mat-form-field style="width:25vw">
-                        <mat-label>Certification Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
+            <table>
+                <tr>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Estimated Completion Time</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCompletionTime }}">
+                        </mat-form-field></td>
 
-        <table>
-            <td><mat-checkbox>Required by ROC</mat-checkbox></td>
-            <td><mat-checkbox>Personal</mat-checkbox></td>
-        </table>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Estimated Completion Date</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCertDate }}">
+                            <!--<input matInput [matDatepicker]="picker1" [readonly]="isReadOnly">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    -->
+                        </mat-form-field></td>
+                </tr>
+                <tr>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Certification Expiry</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.certExpiry }}">
+                        </mat-form-field></td>
 
-        <table>
-            <td>
-                <mat-form-field style="width:50vw">
-                    <mat-label>Reason for Certification</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </td>
-        </table>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Certification Cost</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.certCost }}">
+                        </mat-form-field></td>
+                </tr>
+                <tr>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Previous Certification Name</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.nameOfPrevCert }}">
+                        </mat-form-field></td>
 
-        <table>
-            <tr>
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Estimated Completion Time</mat-label>
-                        <input matInput>
-                    </mat-form-field></td>
+                    <td><mat-form-field style="width:25vw">
+                            <mat-label>Previous Certification Date</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.prevCertDate}}">
+                            <!--
+                    <input matInput [matDatepicker]="picker2" [readonly]="isReadOnly" value="{{ selectedItem.prevCertDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    -->
+                        </mat-form-field></td>
+                </tr>
+            </table>
 
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Estimated Completion Date</mat-label>
-                        <input matInput [matDatepicker]="picker1">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                    </mat-form-field></td>
-            </tr>
-            <tr>
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Certification Expiry</mat-label>
-                        <input matInput>
-                    </mat-form-field></td>
+            <table>
+                <tr>
+                    <td><mat-form-field style="width:16.6vw">
+                            <mat-label>Employee Signed</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.empSignDate }}">
+                            <!--
+                    <input matInput [matDatepicker]="picker3" [readonly]="isReadOnly" value="{{ selectedItem.empSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                    -->
+                        </mat-form-field></td>
 
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Certification Cost</mat-label>
-                        <input matInput>
-                    </mat-form-field></td>
-            </tr>
-            <tr>
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Previous Certifivation Cost</mat-label>
-                        <input matInput>
-                    </mat-form-field></td>
+                    <td><mat-form-field style="width:16.6vw">
+                            <mat-label>Lead Signed</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.leadSignDate }}">
+                            <!--
+                    <input matInput [matDatepicker]="picker4" [readonly]="isReadOnly" value="{{ selectedItem.leadSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                    -->
+                        </mat-form-field></td>
 
-                <td><mat-form-field style="width:25vw">
-                        <mat-label>Previous Certification Date</mat-label>
-                        <input matInput [matDatepicker]="picker2">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field></td>
-            </tr>
-        </table>
+                    <td><mat-form-field style="width:16.6vw">
+                            <mat-label>Executive Signed</mat-label>
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.execSignDate }}">
+                            <!--
+                    <input matInput [matDatepicker]="picker5" [readonly]="isReadOnly" value="{{ selectedItem.execSignDate }}">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
+                    -->
+                        </mat-form-field></td>
+                </tr>
+            </table>
 
-        <hr>
-
-        <table>
-            <tr>
-                <td><mat-form-field style="width:16.6vw">
-                        <mat-label>Employee Signed</mat-label>
-                        <input matInput [matDatepicker]="picker3">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
-                        <mat-datepicker #picker3></mat-datepicker>
-                    </mat-form-field></td>
-
-                <td><mat-form-field style="width:16.6vw">
-                        <mat-label>Lead Signed</mat-label>
-                        <input matInput [matDatepicker]="picker4">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
-                        <mat-datepicker #picker4></mat-datepicker>
-                    </mat-form-field></td>
-
-                <td><mat-form-field style="width:16.6vw">
-                        <mat-label>Executive Signed</mat-label>
-                        <input matInput [matDatepicker]="picker5">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
-                        <mat-datepicker #picker5></mat-datepicker>
-                    </mat-form-field></td>
-            </tr>
-        </table>
-        <table>
-            <td><button mat-raised-button class="submit">Submit</button></td>
-        </table>
+        </div>
     </div>
+
 </body>

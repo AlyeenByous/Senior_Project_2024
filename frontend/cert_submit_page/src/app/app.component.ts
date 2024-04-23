@@ -25,6 +25,8 @@ export class AppComponent {
   title = 'cert_submit_page';
 
   data: any;
+  idItem:any;
+  certs: any;
 
   constructor(private apiService: ApiService) { }
 
@@ -33,6 +35,14 @@ export class AppComponent {
       this.data = response;
       console.log(this.data);
     });
+    this.apiService.getItemById("i8299d").subscribe((response) => {
+      this.idItem = response;
+      console.log(this.idItem);
+    })
+    this.apiService.list().subscribe((response) => {
+      this.certs = response;
+      console.log(this.certs);
+    })
   }
 
 }

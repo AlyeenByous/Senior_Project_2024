@@ -5,7 +5,8 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import { ApiService } from '../api.service';
 import { NgFor } from '@angular/common';
-
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -29,7 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule,
     MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatIconModule, MatButtonModule, MatDividerModule, NgFor, MatSelectModule
+    MatIconModule, MatButtonModule, MatDividerModule, NgFor, MatSelectModule, NgIf,
   ]
 })
 
@@ -38,13 +39,98 @@ export class BlankPageComponent {
 
   constructor(private apiService: ApiService) { }
 
-  item: any;
-  itemId: String;
-  dropDownOptions: any[] = [
-    { id: "cert1", name: 'Option 1' },
-    { id: "cert2", name: 'Option 2' },
-    { id: "cert3", name: 'Option 3' }
-  ];
+  stringFormData: string = '';
+  items: any[] = [];
+  selectedItemId: string = '';
+  selectedItem: any;
+  isReadOnly = false;
+
+  //cx =(Math.random()*10000)+1;
+  //x = Math.trunc(this.cx);
+  //newCertForm = new FormControl('');
+  formData = {
+    //id: 'i'+ this.x+'d',
+    employeeName: '',
+    nameOfCert: '',
+    rocReq: false,
+    personalDev: false,
+    reasonForCert: '',
+    estCompletionTime: '',
+    estCompletionDate: '',
+    certExpiry: '',
+    certCost: '',
+    nameOfPrevCert: '',
+    prevCertDate: '',
+    empSignDate: '',
+    leadSignDate: '',
+    execSignDate: ''
+  };
+
+
+  submitted: boolean = false;
+
+  ngOnInit(): void {
+    this.apiService.list().subscribe(items => {
+      this.items = items;
+    });
+  }
+
+
+
+  onSubmit() {
+    this.submitted = true;
+    console.log("form data", this.formData); //this shows an object 
+    this.stringFormData = JSON.stringify(this.formData);
+    console.log('/');
+    console.log(this.stringFormData);
+    this.sendDataToBackend(this.stringFormData); //after submit this should send it to backend?
+
+    //this nonsense clears the form again. probably an easier way?
+    /*
+    this.formData.empName = '',
+    this.formData.certName= '';
+    this.formData.required= false;
+    this.formData.personal= false;
+    this.formData.reason= '';
+    this.formData.estTime= '';
+    this.formData.estDate= '';
+    this.formData.expiry= '';
+    this.formData.costOfCert= '';
+    this.formData.prevCertCost= '';
+    this.formData.previousCertDate= '';
+    this.formData.empSign= '';
+    this.formData.leadSign= '';
+    this.formData.execSign= '';
+    */
+  }
+
+  sendDataToBackend(certificationData: any) {
+    this.apiService.request(certificationData).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: () => {
+        console.log('ERROR');
+      },
+    });
+  }
+
+  addNewCert() {
+    this.selectedItemId = "";
+    this.selectedItem = "";
+    this.isReadOnly = false;
+  }
+
+  onSelectedItemChange(event: any): void {
+    this.isReadOnly = true;
+    const selectedValue = event.target.value;
+    console.log("onselecteditemchange", selectedValue);
+    this.apiService.getItemById(selectedValue).subscribe(item => {
+      this.selectedItem = item;
+      console.log("log item", item);
+    });
+    console.log("after onselecteditemchange", this.selectedItem);
+  }
 
 
   generatePDF() {
@@ -60,14 +146,14 @@ export class BlankPageComponent {
     });
   }
 
-  getItemById() {
-    if (this.itemId) {
-      this.apiService.getItems().subscribe((response) => {
-        this.item = response;
-        console.log(this.item);
-      });
-    }
-  }
+  // getItemById() {
+  //   if(this.itemId){
+  //     this.apiService.getItems().subscribe((response) => {
+  //       this.item = response;
+  //       console.log(this.item);
+  //     });
+  // }
+  // }
 
 
 }
