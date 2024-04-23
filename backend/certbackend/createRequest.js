@@ -11,9 +11,11 @@ module.exports.createRequest = async (event, context, callback) => {
     };
     let statusCode = 200;
 
-    const data = JSON.parse(Buffer.from(event.body, 'base64').toString());
+    console.log("EVENT:::", event.body);
+    const data = JSON.parse(event.body);
     console.log("EVENT:::", data);
-
+    const employeeName = data.employeeName;
+    console.log(employeeName);
     //create new timestamp value
     let d = new Date();
     let h = addZero(timeFormat(d.getHours()-5));
