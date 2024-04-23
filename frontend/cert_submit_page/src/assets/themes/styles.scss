@@ -1,0 +1,91 @@
+@use '@angular/material' as mat;
+
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define your theme with color palettes, typography and density
+
+$mat-theme-primary-palette: map-merge(mat.$grey-palette, (contrast: (500: rgba(0, 0, 0, 0.87), )));
+$mat-theme-primary: mat.define-palette($mat-theme-primary-palette,
+                $default: 500,
+                $lighter: 500,
+                $darker: 500,
+                $text: 500);
+
+$mat-theme-accent-palette: map-merge(mat.$amber-palette, (501: #e0aa51, 201: #e0aa51, 701: #e0aa51, 601: #e0aa51, ));
+$mat-theme-accent: mat.define-palette($mat-theme-accent-palette,
+                $default: 501,
+                $lighter: 201,
+                $darker: 701,
+                $text: 601);
+
+$mat-theme-warn-palette: map-merge(mat.$red-palette, ());
+$mat-theme-warn: mat.define-palette($mat-theme-warn-palette,
+                $default: 600,
+                $lighter: 600,
+                $darker: 600,
+                $text: 600);
+
+$mat-dark-theme-primary-palette: map-merge(mat.$grey-palette, (contrast: (500: rgba(0, 0, 0, 0.87), )));
+$mat-dark-theme-primary: mat.define-palette($mat-dark-theme-primary-palette,
+                $default: 500,
+                $lighter: 500,
+                $darker: 500,
+                $text: 500);
+
+$mat-dark-theme-accent-palette: map-merge(mat.$amber-palette, (501: #e0aa51, 201: #e0aa51, 701: #e0aa51, 601: #e0aa51, ));
+$mat-dark-theme-accent: mat.define-palette($mat-dark-theme-accent-palette,
+                $default: 501,
+                $lighter: 201,
+                $darker: 701,
+                $text: 601);
+
+$mat-dark-theme-warn-palette: map-merge(mat.$red-palette, ());
+$mat-dark-theme-warn: mat.define-palette($mat-dark-theme-warn-palette,
+                $default: 600,
+                $lighter: 600,
+                $darker: 600,
+                $text: 600);
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Rubik:wght@700&display=swap');
+
+$mat-typography: mat.define-typography-config($font-family: 'Montserrat',
+                //$display-4: mat.define-typography-level($font-size: 96px, $font-weight: 700, $font-family: Montserrat),
+                //$display-3: mat.define-typography-level($font-size: 60px, $font-weight: 700, $font-family: Rubik),
+                //$display-2: mat.define-typography-level($font-size: 48px, $font-weight: 700, $font-family: Rubik),
+                //$display-1: mat.define-typography-level($font-size: 34px, $font-weight: 700, $font-family: Rubik),
+                //$headline: mat.define-typography-level($font-size: 24px, $font-weight: 600, $font-family: Rubik),
+                //$title: mat.define-typography-level($font-size: 20px, $font-weight: 600, $font-family: Montserrat),
+                //$subheading-2: mat.define-typography-level($font-size: 18px, $font-weight: 600, $font-family: Rubik),
+                //$subheading-1: mat.define-typography-level($font-size: 20px, $font-weight: 600, $font-family: Rubik),
+                //$body-2: mat.define-typography-level($font-size: 16px, $font-weight: regular, $font-family: Montserrat),
+                //$body-1: mat.define-typography-level($font-size: 18px, $font-weight: regular, $font-family: Montserrat),
+                //$caption: mat.define-typography-level($font-size: 16px, $font-weight: regular, $font-family: Montserrat),
+                //$button: mat.define-typography-level($font-size: 16px, $font-weight: 600, $font-family: Montserrat),
+                // Line-height must be unit-less fraction of the font-size.
+                //$input: mat.define-typography-level($font-size: inherit, $line-height: 1.125, $font-weight: 600, $font-family: Montserrat),
+        );
+
+$mat-density: 0;
+// @include mat.elevation(
+//   $zValue: 12,
+//   $color: #000,
+//   $opacity: 0.5
+// );
+
+$mat-core-theme: mat.define-light-theme((color: (primary: $mat-theme-primary,
+                                accent: $mat-theme-accent,
+                                warn: $mat-theme-warn ),
+                        typography: $mat-typography,
+                        density: $mat-density ));
+
+$mat-dark-theme: mat.define-dark-theme((color: (primary: $mat-dark-theme-primary,
+                                accent: $mat-dark-theme-accent,
+                                warn: $mat-dark-theme-warn,
+                        )));
+
+@include mat.all-component-themes($mat-core-theme);
+
+.dark-theme {
+        @include mat.all-component-colors($mat-dark-theme);
+}
