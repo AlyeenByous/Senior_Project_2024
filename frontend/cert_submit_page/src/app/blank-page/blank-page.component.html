@@ -3,9 +3,9 @@
         <table>
             <tr>
                 <div >
-                    <td><button mat-raised-button (click)='generatePDF()'>Generate PDF</button></td>
+                    <td><button mat-raised-button *ngIf="selectedItem" (click)='generatePDF()'>Generate PDF</button></td>
                     <td>
-                        <button mat-raised-button (click)='addNewCert()'>Add New</button>
+                        <button mat-raised-button *ngIf="selectedItem" (click)='addNewCert()'>Add New</button>
                     </td>
                     <td>
                         <mat-form-field>
