@@ -16,10 +16,10 @@
                             </mat-select>
                         </mat-form-field>
                         
-                        <mat-form-field>
-                            <mat-label *ngIf="selectedEmployee" for="certs">Choose a Certification:</mat-label>
+                        <mat-form-field *ngIf="selectedEmployee">
+                            <mat-label  for="certs">Choose a Certification:</mat-label>
                             <mat-select [(ngModel)]="selectedItemId" (selectionChange)="onSelectedItemChange($event)">
-                                <mat-option *ngFor="let item of items" [value]="item.id">{{
+                                <mat-option *ngFor="let item of filterEmployeeCerts()" [value]="item.id">{{
                                     item.nameOfCert}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -53,8 +53,7 @@
                 </table>
 
                 <table>
-                    <td><mat-checkbox name="rocReq" [(ngModel)]="formData.rocReq">Required by
-                            ROC</mat-checkbox></td>
+                    <td><mat-checkbox name="rocReq" [(ngModel)]="formData.rocReq">Required by ROC</mat-checkbox></td>
                     <td><mat-checkbox name="personalDev" [(ngModel)]="formData.personalDev">Personal</mat-checkbox></td>
                 </table>
 

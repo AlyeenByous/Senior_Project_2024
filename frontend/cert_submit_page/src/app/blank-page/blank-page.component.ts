@@ -121,6 +121,7 @@ export class BlankPageComponent {
     this.selectedItemId = "";
     this.selectedItem = "";
     this.isReadOnly = false;
+    this.selectedEmployee = "";
   }
 
   /*onSelectedItemChange(event: any): void {
@@ -140,6 +141,10 @@ export class BlankPageComponent {
     this.apiService.getItemById(this.selectedItemId).subscribe(item => {
       this.selectedItem = item;
     });
+  }
+
+  filterEmployeeCerts(){
+    return this.items.filter(s => s.employeeName === this.selectedEmployee)
   }
 
   generatePDF() {
