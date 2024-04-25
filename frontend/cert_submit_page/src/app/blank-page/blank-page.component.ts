@@ -134,6 +134,7 @@ export class BlankPageComponent {
   }*/
 
   onSelectedItemChange(event: MatSelectChange): void {
+    this.isReadOnly = true;
     this.selectedItemId = event.value;
     this.apiService.getItemById(this.selectedItemId).subscribe(item => {
       this.selectedItem = item;
