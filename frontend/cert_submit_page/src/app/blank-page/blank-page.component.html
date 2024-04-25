@@ -87,7 +87,7 @@
                     </tr>
                     <tr>
                         <td><mat-form-field style="width:25vw">
-                                <mat-label>Previous Certifivation Cost</mat-label>
+                                <mat-label>Previous Certification Name</mat-label>
                                 <input matInput name="nameOfPrevCert" [(ngModel)]="formData.nameOfPrevCert">
                             </mat-form-field></td>
 
@@ -181,7 +181,7 @@
 
                     <td><mat-form-field style="width:25vw">
                             <mat-label>Estimated Completion Date</mat-label>
-                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCertDate }}">
+                            <input matInput [readonly]="isReadOnly" value="{{ selectedItem.estCompletionDate}}">
                             <!--<input matInput [matDatepicker]="picker1" [readonly]="isReadOnly">
                     <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
