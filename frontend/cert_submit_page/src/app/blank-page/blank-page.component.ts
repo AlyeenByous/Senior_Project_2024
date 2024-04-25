@@ -43,6 +43,7 @@ export class BlankPageComponent {
   stringFormData: string = '';
   items: any[] = [];
   selectedItemId: string = '';
+  selectedEmployee: string='';
   selectedItem: any;
   isReadOnly = false;
 
@@ -148,8 +149,8 @@ export class BlankPageComponent {
     html2canvas(data).then(canvas => {
       const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
       //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
-      let pdf = new jsPDF('p', 'cm', 'a4'); //Generates PDF in portrait mode
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
+      let pdf = new jsPDF('p', 'cm', 'letter'); //Generates PDF in portrait mode
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, 18, 18);
       pdf.save('Cert_Submission.pdf');
     });
   }
