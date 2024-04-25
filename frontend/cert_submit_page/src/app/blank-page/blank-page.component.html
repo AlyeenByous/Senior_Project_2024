@@ -5,7 +5,7 @@
                 <div >
                     <h3>Load Submitted Certification:</h3>
                     <td>
-                        <mat-form-field>
+                        <mat-form-field style="width:25vw">
                             <mat-label for="certs">Choose an Employee:</mat-label>
                             <mat-select [(ngModel)]="selectedEmployee" (selectionChange)="onSelectedItemChange($event)">
                                 <mat-option *ngFor="let item of items" [value]="item.employeeName">{{
@@ -15,7 +15,7 @@
                     </td>
                         
                     <td>
-                        <mat-form-field *ngIf="selectedEmployee">
+                        <mat-form-field *ngIf="selectedEmployee" style="width:25vw">
                             <mat-label  for="certs">Choose a Certification:</mat-label>
                             <mat-select [(ngModel)]="selectedItemId" (selectionChange)="onSelectedItemChange($event)">
                                 <mat-option *ngFor="let item of filterEmployeeCerts()" [value]="item.id">{{
@@ -25,10 +25,12 @@
                     </td>
                 </div>
                 <p></p>
-                <td><button mat-raised-button *ngIf="selectedItem" (click)='generatePDF()'>Generate PDF</button></td>
-                <td>
-                    <button mat-raised-button *ngIf="selectedItem" (click)='addNewCert()'>Add New</button>
-                </td>
+                <div>
+                    <td><button mat-raised-button *ngIf="selectedItem" (click)='generatePDF()' style="width:25vw">Generate PDF</button></td>
+                    <td>
+                        <button mat-raised-button *ngIf="selectedItem" (click)='addNewCert()' style="width:25vw">Add New</button>
+                    </td>
+                </div>
             </tr>
         </table>
 
@@ -150,7 +152,7 @@
 -->
 
         <div id="exportform" *ngIf="selectedItem" >
-            <!--<h1>{{ selectedItem.nameOfCert }} Details</h1> <br>-->
+            <h1>{{ selectedItem.nameOfCert }} Details</h1>
             <table>
                 <tr>
                     <td>

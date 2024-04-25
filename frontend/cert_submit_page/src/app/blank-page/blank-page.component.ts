@@ -46,6 +46,8 @@ export class BlankPageComponent {
   selectedEmployee: string='';
   selectedItem: any;
   isReadOnly = false;
+  uniqueEmployeeNames: any[] = [];
+
 
   //cx =(Math.random()*10000)+1;
   //x = Math.trunc(this.cx);
@@ -75,6 +77,13 @@ export class BlankPageComponent {
     this.apiService.list().subscribe(items => {
       this.items = items;
     });
+
+    this.items.forEach(item => {
+      if(this.uniqueEmployeeNames.indexOf(item.employeeName) === -1) {
+          this.uniqueEmployeeNames.push(item.employeeName);
+      }
+   });
+    console.log("employeenames", this.uniqueEmployeeNames);
   }
 
 
