@@ -18,7 +18,8 @@ module.exports.createRequest = async (event, context, callback) => {
     console.log(employeeName);
     //create new timestamp value
     let d = new Date();
-    let h = addZero(timeFormat(d.getHours()-5));
+    let dxd = timeFormat(d.getHours());
+    let h = addZero(dxd);
     let m = addZero(d.getMinutes());
     let ts = h + ':' + m;
     //create new date value
@@ -49,7 +50,7 @@ module.exports.createRequest = async (event, context, callback) => {
             empSignDate: data.empSignDate, 
             leadSignDate: data.leadSignDate, 
             execSignDate: data.execSignDate,
-            approvalStatus: data.approvalStatus
+            approvalStatus: 0
 
             
         }
@@ -79,6 +80,8 @@ module.exports.createRequest = async (event, context, callback) => {
 };
 
 function timeFormat(j){
+    j=j-5;
+    if (j<0){j=j+24;}
     return (j%24);
 }
 function addZero(i) {
