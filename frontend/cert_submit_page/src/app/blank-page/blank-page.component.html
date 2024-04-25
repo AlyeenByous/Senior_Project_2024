@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <div >
-                    <h3>Load a submitted form:</h3>
+                    <h3>Load Submitted Certification:</h3>
                     <td>
                         <mat-form-field>
                             <mat-label for="certs">Choose an Employee:</mat-label>
@@ -36,6 +36,7 @@
         This code is the form that will show to add a new form!
     -->
         <div *ngIf="!selectedItem || selectedItem==''">
+            <h1>Add A New Certification:</h1>
             <form #certForm="ngForm" (ngSubmit)="onSubmit()">
                 <table>
                     <tr>
