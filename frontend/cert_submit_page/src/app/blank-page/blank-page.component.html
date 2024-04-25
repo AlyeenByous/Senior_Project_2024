@@ -2,7 +2,7 @@
     <div class="container">
         <table>
             <tr>
-                <div id="exportform">
+                <div >
                     <td><button mat-raised-button (click)='generatePDF()'>Generate PDF</button></td>
                     <td>
                         <button mat-raised-button (click)='addNewCert()'>Add New</button>
@@ -138,7 +138,7 @@
     The following code will show the chosen certification from the dropdown.
 -->
 
-        <div *ngIf="selectedItem">
+        <div id="exportform" *ngIf="selectedItem" >
             <!--<h1>{{ selectedItem.nameOfCert }} Details</h1> <br>-->
             <table>
                 <tr>
